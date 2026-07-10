@@ -42,7 +42,7 @@ In dual-stack mode, Teku uses the following ports by default:
 
 In dual-stack mode, you can set an IPv6 listening port to the same value as its corresponding IPv4 port.
 If the ports match and [`--p2p-interface`](../../reference/cli/index.md#p2p-interface-p2p-interfaces)
-includes the IPv6 wildcard address (`::`), Teku binds a single IPv6 wildcard listener for that 
+includes the IPv6 wildcard address (`::`), Teku binds a single IPv6 wildcard listener for that
 port, accepting both IPv4 and IPv6 connections on all interfaces.
 This applies independently to the TCP, UDP discovery, and QUIC ports.
 
