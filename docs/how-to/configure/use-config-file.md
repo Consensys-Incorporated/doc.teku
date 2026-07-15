@@ -13,6 +13,14 @@ To specify the configuration file, use the [`--config-file`](../../reference/cli
 To override an option specified in the configuration file, either specify the same option on the command line or as an [environment variable](../../reference/cli/index.md#specify-options).
 For options specified in more than one place, the order of precedence is command line, environment variable, configuration file.
 
+:::note
+
+The configuration file is used for node-level settings.
+It is separate from the consensus-specification network configuration that you can supply with
+[`--network`](../../reference/cli/index.md#network).
+
+:::
+
 ## YAML specification
 
 The configuration file must be a valid YAML file composed of key/value pairs. Each key is the corresponding command line option name without the leading dashes (`--`).

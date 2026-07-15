@@ -1801,9 +1801,11 @@ network: "mainnet"
   </TabItem>
 </Tabs>
 
-The predefined network configuration.
-Accepts a predefined network name, or file path or URL to a YAML configuration file.
-See the [consensus specification] for examples.
+The network to use.
+Accepts a predefined network name, or a file path or URL to a YAML network configuration file
+from the [consensus specification].
+This network configuration is separate from the Teku
+[configuration file](../../how-to/configure/use-config-file.md), which configures node-level settings.
 
 The default is `mainnet`.
 
@@ -1820,7 +1822,7 @@ Possible values are:
 | `chiado`   | Consensus layer | Test       | Gnosis [testnet](https://docs.gnosischain.com/concepts/networks/chiado) |
 | `lukso`    | Consensus layer | Production | Network for the [Lukso chain](https://lukso.network/)                   |
 
-Predefined networks can provide defaults such as the initial state of the network, bootnodes, and
+Predefined networks configure values such as the initial state of the network, bootnodes, and
 the address of the deposit contract.
 
 ### `p2p-advertised-ip`, `p2p-advertised-ips`
