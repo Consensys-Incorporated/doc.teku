@@ -1802,7 +1802,7 @@ network: "mainnet"
 </Tabs>
 
 The network to use.
-Accepts a predefined network name, or a file path or URL to a YAML network configuration file
+Accepts a predefined network name, or a file path or URL to a YAML network-specific configuration file
 from the [consensus specification].
 This network configuration is separate from the Teku
 [configuration file](../../how-to/configure/use-config-file.md), which configures node-level settings.
