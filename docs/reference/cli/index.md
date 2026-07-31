@@ -251,8 +251,8 @@ See
 [this community-maintained list of checkpoint state endpoints](https://eth-clients.github.io/checkpoint-sync-endpoints/).
 :::
 
-When this option is set and [`--deposit-snapshot-enabled`](#deposit-snapshot-enabled) is enabled
-(the default), Teku also uses this URL to retrieve the deposit tree snapshot.
+When this option is set, and `--deposit-snapshot-enabled` is also not set or disabled,
+the `--checkpoint-sync-url` value will be used to determine the deposit snapshot.
 
 ### `config-file`
 
@@ -560,16 +560,26 @@ deposit-snapshot-enabled: false
   </TabItem>
 </Tabs>
 
-Enables or disables using a finalized deposit tree snapshot, and persisting the deposit tree
-snapshot after finalization.
+Enables or disables using a deposit tree snapshot from checkpoint sync or distributed as part of
+Teku's binary and persisting the tree after finalization.
 The default is `true`.
 
-Teku initializes the deposit Merkle tree from a finalized deposit tree snapshot instead of
-rebuilding the tree from individual deposit records, which reduces the time before the node is
-available on startup.
-Teku bundles a snapshot for Gnosis, Holesky, LUKSO, Mainnet, and Sepolia.
-If you also set [`--checkpoint-sync-url`](#checkpoint-sync-url), Teku tries the snapshot from the
-checkpoint sync endpoint first, and falls back to the bundled snapshot.
+Normally, at sync, Teku requests all deposit logs from the execution layer up to the head.
+At each startup, Teku loads all deposits from the disk and replays them to recreate the Merkle tree.
+Both operations consume peer resources and delay node availability on restart.
+The feature enabled by this option dramatically decreases the time of both operations by bundling
+deposit tree snapshots in the Teku distribution for all major networks (Mainnet, Gnosis, Hoodi,
+and Sepolia) and persisting the current tree after finalization.
+Instead of replaying thousands of deposits on startup, Teku loads the bundled tree or a saved one.
+
+:::info Security considerations
+If a malicious peer changes the bundled tree, Teku throws `InvalidDepositEventsException` on the
+next deposit received from the execution layer.
+The malicious peer can't follow up the chain, and so can't propose with an incorrect deposit tree snapshot.
+:::
+
+When this option is not set or is disabled, the `--checkpoint-sync-url` value will be used if
+provided to find the deposit snapshot URL.
 
 ### `doppelganger-detection-enabled`
 
