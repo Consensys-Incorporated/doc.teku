@@ -25,7 +25,7 @@ The [Teku and Web3Signer TLS configuration tutorial] provides instructions to cr
 
 - [Teku's password-protected PKCS12 or JKS keystore and password file].
 - [Web3Signer's password-protected PKCS12 or JKS truststore and password file].
-- ETH1 client (for example [Besu]) synced to the required network.
+- Execution client (for example [Besu]) synced to the required network.
 
 ## Start Web3Signer
 
@@ -54,7 +54,7 @@ For example:
 ```bash
 teku \
   --network=hoodi                                                                           \
-  --eth1-endpoint=http://localhost:8545                                                     \
+  --ee-endpoint=http://localhost:8551                                                       \
   --validators-external-signer-public-keys=0xa99a...e44c,0xb89b...4a0b                      \
   --validators-external-signer-url=https://localhost:9000                                   \
   --validators-external-signer-truststore=/Users/me/certs/web3signer_truststore.p12         \
@@ -66,7 +66,7 @@ teku \
 In the command:
 
 - Specify the network using [`--network`](../../reference/cli/index.md#network).
-- Specify the JSON-RPC URL of the execution layer client using [`--eth1-endpoint`](../../reference/cli/index.md#eth1-endpoint-eth1-endpoints).
+- Specify the URL of the execution client's Engine API using [`--ee-endpoint`](../../reference/cli/index.md#ee-endpoint).
 - Specify the validator's public keys using [`--validators-external-signer-public-keys`](../../reference/cli/index.md#validators-external-signer-public-keys).
 - Specify the URL of the running external signer using [`--validators-external-signer-url`](../../reference/cli/index.md#validators-external-signer-url).
 - Specify the truststore and password file using [`validators-external-signer-truststore`](../../reference/cli/index.md#validators-external-signer-truststore) and [`validators-external-signer-truststore-password-file`](../../reference/cli/index.md#validators-external-signer-truststore-password-file).

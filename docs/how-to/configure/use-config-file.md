@@ -48,8 +48,8 @@ p2p-port: 9000
 validator-keys: "/Users/me/node/hoodi/validator/keys:/Users/me/node/hoodi/validator/passwords"
 validators-graffiti: "Teku validator"
 
-# Eth 1
-eth1-endpoint: "http://localhost:8545"
+# execution client
+ee-endpoint: "http://localhost:8551"
 
 # metrics
 metrics-enabled: true

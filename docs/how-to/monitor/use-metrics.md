@@ -41,7 +41,7 @@ To configure Prometheus and run with Teku:
 
     ```bash
     teku --eth1-deposit-contract-address=dddddddddddddddddddddddddddddddddddddddd \
-    --eth1-endpoint=http://localhost:8545 --validators-key-file=validator_keys \
+    --ee-endpoint=http://localhost:8551 --validators-key-file=validator_keys \
     --p2p-port=9000 --rest-api-enabled=true --rest-api-docs-enabled=true \
     --metrics-enabled=true --metrics-categories=BEACON,PROCESS,LIBP2P,JVM,NETWORK,PROCESS
     ```

@@ -251,8 +251,8 @@ See
 [this community-maintained list of checkpoint state endpoints](https://eth-clients.github.io/checkpoint-sync-endpoints/).
 :::
 
-When this option is set, and `--deposit-snapshot-enabled` is also not set or disabled,
-the `--checkpoint-sync-url` value will be used to determine the deposit snapshot.
+When this option is set and [`--deposit-snapshot-enabled`](#deposit-snapshot-enabled) is enabled
+(the default), Teku also uses this URL to retrieve the deposit tree snapshot.
 
 ### `config-file`
 
@@ -560,26 +560,16 @@ deposit-snapshot-enabled: false
   </TabItem>
 </Tabs>
 
-Enables or disables using a deposit tree snapshot from checkpoint sync or distributed as part of
-Teku's binary and persisting the tree after finalization.
+Enables or disables using a finalized deposit tree snapshot, and persisting the deposit tree
+snapshot after finalization.
 The default is `true`.
 
-Normally, at sync, Teku requests all deposit logs from the execution layer up to the head.
-At each startup, Teku loads all deposits from the disk and replays them to recreate the Merkle tree.
-Both operations consume peer resources and delay node availability on restart.
-The feature enabled by this option dramatically decreases the time of both operations by bundling
-deposit tree snapshots in the Teku distribution for all major networks (Mainnet, Gnosis, Hoodi,
-and Sepolia) and persisting the current tree after finalization.
-Instead of replaying thousands of deposits on startup, Teku loads the bundled tree or a saved one.
-
-:::info Security considerations
-If a malicious peer changes the bundled tree, Teku throws `InvalidDepositEventsException` on the
-next deposit received from the execution layer.
-The malicious peer can't follow up the chain, and so can't propose with an incorrect deposit tree snapshot.
-:::
-
-When this option is not set or is disabled, the `--checkpoint-sync-url` value will be used if
-provided to find the deposit snapshot URL.
+Teku initializes the deposit Merkle tree from a finalized deposit tree snapshot instead of
+rebuilding the tree from individual deposit records, which reduces the time before the node is
+available on startup.
+Teku bundles a snapshot for Gnosis, Holesky, LUKSO, Mainnet, and Sepolia.
+If you also set [`--checkpoint-sync-url`](#checkpoint-sync-url), Teku tries the snapshot from the
+checkpoint sync endpoint first, and falls back to the bundled snapshot.
 
 ### `doppelganger-detection-enabled`
 
@@ -651,8 +641,6 @@ ee-endpoint: "http://localhost:8550"
 </Tabs>
 
 The URL of the [execution client's](../../concepts/node-types.md#execution-clients) Engine JSON-RPC APIs.
-This replaces [`eth1-endpoint`](#eth1-endpoint-eth1-endpoints) after
-[The Merge](../../concepts/node-types.md).
 
 ### `ee-jwt-claim-id`
 
@@ -768,97 +756,6 @@ The deposit contract address can also be defined in:
 
 - The genesis file specified using [`--initial-state`](#initial-state)
 - The predefined network supplied using [`--network`](#network).
-
-### `eth1-deposit-contract-max-request-size`
-
-<Tabs>
-  <TabItem value="Syntax" label="Syntax" default>
-
-```bash
---eth1-deposit-contract-max-request-size=<INTEGER>
-```
-
-  </TabItem>
-  <TabItem value="Example" label="Example" >
-
-```bash
---eth1-deposit-contract-max-request-size=8000
-```
-
-  </TabItem>
-  <TabItem value="Environment variable" label="Environment variable" >
-
-```bash
-TEKU_ETH1_DEPOSIT_CONTRACT_MAX_REQUEST_SIZE=8000
-```
-
-  </TabItem>
-  <TabItem value="Configuration file" label="Configuration file" >
-
-```bash
-eth1-deposit-contract-max-request-size: 8000
-```
-
-  </TabItem>
-</Tabs>
-
-The maximum number of blocks to request deposit contract event logs for in a single request.
-The default is `10000`.
-
-Setting a smaller max size may help if your execution layer client is slow at loading deposit event
-logs, or when receiving warnings that the execution layer client is unavailable.
-
-### `eth1-endpoint`, `eth1-endpoints`
-
-<Tabs>
-  <TabItem value="Syntax" label="Syntax" default>
-
-```bash
---eth1-endpoint=<URL>[,<URL>...]...
-```
-
-  </TabItem>
-  <TabItem value="Example" label="Example" >
-
-```bash
---eth1-endpoint=http://localhost:8545,https://mainnet.infura.io/v3/d0e21ccd0b1e4eef7784422eabc51111
-```
-
-  </TabItem>
-  <TabItem value="Environment variable" label="Environment variable" >
-
-```bash
-TEKU_ETH1_ENDPOINT=http://localhost:8545,https://mainnet.infura.io/v3/d0e21ccd0b1e4eef7784422eabc51111
-```
-
-  </TabItem>
-  <TabItem value="Configuration file" label="Configuration file" >
-
-```bash
-eth1-endpoint: ["http://localhost:8545","https://mainnet.infura.io/v3/d0e21ccd0b1e4eef7784422eabc51111"]
-```
-
-  </TabItem>
-</Tabs>
-
-A comma-separated list of JSON-RPC URLs of execution layer clients.
-Each time Teku makes a call, it finds the first provider in the list that is available, on the right
-chain, and in sync.
-This option must be specified if running a validator.
-
-If not specified (that is, you're running a beacon node only), then provide an initial state using
-the [`--initial-state`](#initial-state) option, or start Teku from an existing database using
-[`--data-path`](#data-base-path-data-path), which provides the initial state to work from.
-You do not need to provide an initial state if running a public network which has already started
-(for example, Mainnet or Hoodi).
-
-:::caution
-
-After [The Merge](../../concepts/node-types.md), you can't use `eth1-endpoint` to specify an
-external execution layer provider.
-This option is replaced by [`ee-endpoint`](#ee-endpoint) for each beacon node.
-
-:::
 
 ### `exchange-capabilities-monitoring-enabled`
 

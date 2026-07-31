@@ -35,7 +35,7 @@ docker run -d                             \
   -e TEKU_P2P_PORT=9000                   \
   --mount type=bind,source=/Users/user1/teku/,target=/var/lib/teku consensys/teku:latest \
   --network=hoodi                         \
-  --eth1-endpoint=http://102.10.10.1:8545 \
+  --ee-endpoint=http://102.10.10.1:8551   \
   --validator-keys=/var/lib/teku/validator/keys:/var/lib/teku/validator/passwords \
   --data-path=/var/lib/teku               \
   --log-destination=CONSOLE
@@ -65,7 +65,7 @@ docker run                                \
   --mount type=bind,source=/Users/user1/teku/,target=/var/lib/teku consensys/teku:latest \
   --data-base-path=/var/lib/teku          \
   --network=hoodi                         \
-  --eth1-endpoint=http://102.10.10.1:8545 \
+  --ee-endpoint=http://102.10.10.1:8551   \
   --validator-keys=/var/lib/teku/validator/keys:/var/lib/teku/validator/passwords
 ```
 
@@ -91,7 +91,7 @@ docker run                                      \
   -p <localportREST>:5051 consensys/teku:latest \
   --network=<NETWORK>                           \
   --data-base-path=<DATA_DIR>                   \
-  --eth1-endpoint=<URL>                         \
+  --ee-endpoint=<URL>                           \
   --validator-keys=<KEY_DIR>:<PASS_DIR>         \
   --rest-api-enabled=true
 ```
@@ -104,7 +104,7 @@ docker run                                \
   --mount type=bind,source=/Users/user1/teku/,target=/var/lib/teku consensys/teku:latest \
   --network=hoodi                         \
   --data-base-path=/var/lib/teku          \
-  --eth1-endpoint=http://102.10.10.1:8545 \
+  --ee-endpoint=http://102.10.10.1:8551   \
   --validator-keys=/var/lib/teku/validator/keys:/var/lib/teku/validator/passwords \
   --rest-api-enabled=true
 ```

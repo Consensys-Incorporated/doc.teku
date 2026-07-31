@@ -24,7 +24,7 @@ Alternatively, you can use a checkpoint state endpoint from
 The following command downloads a recent finalized checkpoint state from a beacon node, and starts Teku:
 
 ```bash
-teku --eth1-endpoint=http://localhost:8545 \
+teku --ee-endpoint=http://localhost:8551 \
 --validator-keys=/Users/me/mainnet/validator/keys:/Users/me/mainnet/validator/passwords \
 --checkpoint-sync-url=https://beaconstate.ethstaker.cc
 ```
@@ -49,7 +49,7 @@ curl -o state.ssz -H 'Accept: application/octet-stream' http://other-node:5051/e
 And to start Teku, run:
 
 ```bash
-teku --eth1-endpoint=http://localhost:8545 \
+teku --ee-endpoint=http://localhost:8551 \
 --validator-keys=/Users/me/mainnet/validator/keys:/Users/me/mainnet/validator/passwords \
 --initial-state=state.ssz
 ```
@@ -58,7 +58,7 @@ Another option is to use [`--initial-state`](../reference/cli/index.md#initial-s
 of the state you want to use:
 
 ```bash
-teku --eth1-endpoint=http://localhost:8545 \
+teku --ee-endpoint=http://localhost:8551 \
 --validator-keys=/Users/me/mainnet/validator/keys:/Users/me/mainnet/validator/passwords \
 --initial-state=http://other-node:5051/eth/v2/debug/beacon/states/finalized
 ```
