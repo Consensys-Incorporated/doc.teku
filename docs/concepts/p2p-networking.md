@@ -59,16 +59,27 @@ reconnect to reliably.
 
 Teku exposes a listening port and an advertised port for each transport and for peer discovery:
 
-| Purpose | Protocol | Listening option | Advertised option |
-| --- | --- | --- | --- |
-| TCP transport | TCP | [`--p2p-port`](../reference/cli/index.md#p2p-port) | [`--p2p-advertised-port`](../reference/cli/index.md#p2p-advertised-port) |
-| Peer discovery | UDP | [`--p2p-udp-port`](../reference/cli/index.md#p2p-udp-port) | [`--p2p-advertised-udp-port`](../reference/cli/index.md#p2p-advertised-udp-port) |
-| QUIC transport | UDP | [`--p2p-quic-port`](../reference/cli/index.md#p2p-quic-port) | [`--p2p-advertised-quic-port`](../reference/cli/index.md#p2p-advertised-quic-port) |
+| Purpose | Protocol | Default port | Listening option | Advertised option |
+| --- | --- | --- | --- | --- |
+| TCP transport | TCP | `9000` | [`--p2p-port`](../reference/cli/index.md#p2p-port) | [`--p2p-advertised-port`](../reference/cli/index.md#p2p-advertised-port) |
+| Peer discovery | UDP | `9000` | [`--p2p-udp-port`](../reference/cli/index.md#p2p-udp-port) | [`--p2p-advertised-udp-port`](../reference/cli/index.md#p2p-advertised-udp-port) |
+| QUIC transport | UDP | `9001` | [`--p2p-quic-port`](../reference/cli/index.md#p2p-quic-port) | [`--p2p-advertised-quic-port`](../reference/cli/index.md#p2p-advertised-quic-port) |
+
+The default port applies to the whole row: Teku listens on it and advertises it until you override
+one or both options.
+Set an advertised option only when peers must dial a different port than the node listens on, such
+as when the node is behind a port forward.
+
+Peer discovery has no default port of its own.
+Its default follows the TCP transport port, so changing
+[`--p2p-port`](../reference/cli/index.md#p2p-port) moves discovery with it unless you also set
+[`--p2p-udp-port`](../reference/cli/index.md#p2p-udp-port).
 
 Each option has an `-ipv6` counterpart (for example,
 [`--p2p-quic-port-ipv6`](../reference/cli/index.md#p2p-quic-port-ipv6) and
 [`--p2p-advertised-quic-port-ipv6`](../reference/cli/index.md#p2p-advertised-quic-port-ipv6)) that
 adds a second address family for dual-stack operation.
+The IPv6 defaults are `9090` for the TCP transport and peer discovery, and `9091` for QUIC.
 The listening mode (IPv4, IPv6, or dual-stack) depends on how you combine these options with the
 [`--p2p-interface`](../reference/cli/index.md#p2p-interface-p2p-interfaces) option.
 By default, Teku listens over IPv4.
