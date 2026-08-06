@@ -51,6 +51,29 @@ performance.
 
 ### Firewall connection issues
 
+#### Node ports
+
+To verify the ports that are use on a node, you can get the node identity from the REST API.
+This command lists all of the p2p addresses in use by an active node, which can help verify the ports in use by different protocols.
+```bash
+curl http://localhost:5051/eth/v1/node/identity |jq ".data.p2p_addresses"
+```
+
+There is likely to be a `/tcp/<PORT>/p2p` which should be p2p-port in your configuration, and a `/p2p/<PORT>/quic-v1/` which should be the p2p-quic-port your node is using. If either of those is not listed, its likely disabled by configuration on the node. There could potentially also be ipv6 ports
+
+
+The default ports are 
+| IP Stack | TCP/UDP | Protocol | Port | CLI Argument | 
+| --- | --- | --- | --- | --- |
+| ipv4 | TCP | MPLEX | 9000 | `--p2p-port` |
+| ipv4 | UDP | QUIC | 9001 | `--p2p-quic-port` |
+| ipv6 | TCP | MPLEX | 9090 | `--p2p-port-ipv6` |
+| ipv6 | UDP | QUIC | 9091 | `--p2p-quic-port-ipv6` |
+
+The default ports are listed in the table above. If your ports are not these, then it is setup via configration on the node.
+
+#### Node peers
+
 To determine the number of inbound and outbound peers via the beacon node's REST API, send a request to
 the `/peers` endpoint.
 This command groups peers by direction and counts peer addresses that include `/tcp/` or `/quic`:
