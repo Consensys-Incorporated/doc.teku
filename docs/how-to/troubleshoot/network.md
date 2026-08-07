@@ -49,10 +49,61 @@ and [`--p2p-peer-upper-bound`](../../reference/cli/index.md#p2p-peer-upper-bound
 decline in your beacon node's participation after reducing these parameters, consider increasing them to enhance
 performance.
 
-### Firewall connection issues
+### Check ports
 
-To determine the number of inbound and outbound peers via the beacon node's REST API, send a request to
-the `/peers` endpoint.
+To confirm the ports your node uses, send a request to
+the [`/eth/v1/node/identity`](https://consensys.github.io/teku/#tag/Node/operation/getNetworkIdentity) endpoint.
+
+```bash
+curl -s http://127.0.0.1:5051/eth/v1/node/identity | jq '.data | {p2p_addresses, discovery_addresses}'
+```
+
+Teku returns the addresses it advertises to peers as
+[multiaddresses](../../concepts/p2p-networking.md#multiaddresses), each containing a transport and a port.
+For example:
+
+```json
+{
+  "p2p_addresses": [
+    "/ip4/192.0.2.10/tcp/9000/p2p/16Uiu2HAm...",
+    "/ip4/192.0.2.10/udp/9001/quic-v1/p2p/16Uiu2HAm..."
+  ],
+  "discovery_addresses": [
+    "/ip4/192.0.2.10/udp/9000"
+  ]
+}
+```
+
+Peers dial these ports, so your firewall and port forwarding rules must allow them:
+
+- `/tcp/<port>/` in `p2p_addresses` is the TCP transport port, set by
+  [`--p2p-port`](../../reference/cli/index.md#p2p-port).
+- `/udp/<port>/quic-v1/` in `p2p_addresses` is the QUIC transport port, set by
+  [`--p2p-quic-port`](../../reference/cli/index.md#p2p-quic-port).
+- `/udp/<port>` in `discovery_addresses` is the discovery port, set by
+  [`--p2p-udp-port`](../../reference/cli/index.md#p2p-udp-port).
+
+Teku advertises only the transports it has enabled, so a missing TCP or QUIC address means that transport is
+disabled on the node.
+Addresses that start with `/ip6/` appear when the node also listens over
+[IPv6](../find-and-connect/configure-ipv6.md).
+For the default ports and the full set of port options, see
+[P2P port options](../../concepts/p2p-networking.md#p2p-port-options).
+
+:::note
+
+If you set an advertised port using an option such as
+[`--p2p-advertised-port`](../../reference/cli/index.md#p2p-advertised-port), the response shows the
+advertised port instead of the port the node listens on.
+Open the advertised port on your gateway and forward it to the listening port.
+See [Network gateway issues](#network-gateway-issues).
+
+:::
+
+### Check inbound and outbound peers
+
+To count your node's inbound and outbound peers, send a request to
+the [`/eth/v1/node/peers`](https://consensys.github.io/teku/#tag/Node/operation/getPeers) endpoint.
 This command groups peers by direction and counts peer addresses that include `/tcp/` or `/quic`:
 
 ```bash
@@ -81,6 +132,8 @@ Interpret the output by transport:
 - If the output shows outbound QUIC peers, but no inbound QUIC peers, inbound QUIC traffic might be blocked.
   Allow and forward UDP traffic on the port specified in
   [`--p2p-quic-port`](../../reference/cli/index.md#p2p-quic-port) (`9001` by default).
+
+### Firewall connection issues
 
 Networks typically have a firewall at the entry point (router, modem, or gateway) that blocks incoming
 data by default.
