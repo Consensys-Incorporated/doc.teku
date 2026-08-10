@@ -4302,7 +4302,7 @@ The default is `true`.
   <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
---validator-keys=<KEY_DIR>:<PASS_DIR> | <KEY_FILE>:<PASS_FILE> | <KEY_DIR>:<PASS_FILE>[,<KEY_DIR>:<PASS_DIR> | <KEY_FILE>:<PASS_FILE> | <KEY_DIR>:<PASS_FILE>...]...
+--validator-keys=<KEY_DIR>:<PASS_DIR> | <KEY_FILE>:<PASS_FILE>[,<KEY_DIR>:<PASS_DIR> | <KEY_FILE>:<PASS_FILE>...]...
 ```
 
   </TabItem>
@@ -4317,13 +4317,6 @@ The default is `true`.
 
 ```bash
 --validator-keys=/home/validator/keys/validator_217179e.json:/home/validator/passwords/validator_217179e.txt
-```
-
-  </TabItem>
-  <TabItem value="Example for key directory and password file" label="Example for key directory and password file" >
-
-```bash
---validator-keys=/home/validator/keys:home/validator/password.txt
 ```
 
   </TabItem>
@@ -4347,8 +4340,7 @@ The directory or file to load the encrypted keystore files and associated passwo
 Keystore files must use the `.json` file extension, and password files must use the `.txt` file extension.
 
 When specifying directories, Teku expects to find identically named keystore and password files.
-For example `validator_217179e.json` and `validator_217179e.txt`, unless an individual password file is
-specified, in which case it will be used for all keystore files found in the supplied directory.
+For example `validator_217179e.json` and `validator_217179e.txt`.
 
 :::tip
 
