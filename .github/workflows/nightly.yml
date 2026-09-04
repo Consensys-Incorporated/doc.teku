@@ -32,7 +32,7 @@
       runs-on: ubuntu-latest
       steps:
         - name: Slack Notification
-          uses: ConsenSys/github-actions/slack-notify@979fb3e168f8f7af5e59378a02420c8f6fc4a6a9 # main
+          uses: Consensys-Incorporated/github-actions/slack-notify@979fb3e168f8f7af5e59378a02420c8f6fc4a6a9 # main
           with:
             SLACK_CHANNEL: doc-ci-alerts
             SLACK_COLOR: danger
