@@ -12,7 +12,7 @@ followRedirects: true
 ignorePatterns:
 - pattern: '^http(s)?://localhost'
 - pattern: '^http(s)?://127.0.0.1'
-- pattern: '^http(s)?://gitlab.com/ConsenSys/'
+- pattern: '^http(s)?://gitlab.com/Consensys-Incorporated/'
 - pattern: '^http(s)?://consensys.net'
 - pattern: '^http(s)?://.+.zendesk.com'
 - pattern: '^http(s)?://.+.etherscan.io'

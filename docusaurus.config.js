@@ -37,7 +37,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Set a base path separate from default /docs
-          editUrl: "https://github.com/ConsenSys/doc.teku/tree/master/",
+          editUrl: "https://github.com/Consensys-Incorporated/doc.teku/tree/master/",
           routeBasePath: "/",
           path: "./docs",
           includeCurrentVersion: true,
@@ -137,7 +137,7 @@ const config = {
             dropdownActiveClassDisabled: true,
           },
           {
-            href: "https://github.com/ConsenSys/teku",
+            href: "https://github.com/Consensys-Incorporated/teku",
             className: "header-github-link",
             position: "right",
           },
@@ -199,11 +199,11 @@ const config = {
               },
               {
                 label: "Teku GitHub",
-                href: "https://github.com/ConsenSys/teku",
+                href: "https://github.com/Consensys-Incorporated/teku",
               },
               {
                 label: "Teku documentation GitHub",
-                href: "https://github.com/ConsenSys/doc.teku",
+                href: "https://github.com/Consensys-Incorporated/doc.teku",
               },
               {
                 label: "Subscribe to Teku releases",
