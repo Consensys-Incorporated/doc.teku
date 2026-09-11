@@ -18,7 +18,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "ConsenSys", // Usually your GitHub org/user name.
+  organizationName: "Consensys-Incorporated", // Usually your GitHub org/user name.
   projectName: "doc.teku", // Usually your repo name.
   deploymentBranch: "gh-pages", // GitHub Pages deployment branch
 
