@@ -29,10 +29,10 @@ Teku requires Java 25+; earlier versions are not supported.
 
 ### Clone the Teku repository
 
-Clone the `Consensys/teku` repository:
+Clone the `Consensys-Incorporated/teku` repository:
 
 ```bash
-git clone https://github.com/Consensys/teku.git
+git clone https://github.com/Consensys-Incorporated/teku.git
 ```
 
 ### Build Teku

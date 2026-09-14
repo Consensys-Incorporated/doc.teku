@@ -20,7 +20,7 @@ Teku requires Java 25+ to run; earlier versions are not supported.
 
 ### Install from packaged binaries
 
-Download the [Teku packaged binaries](https://github.com/ConsenSys/teku/releases).
+Download the [Teku packaged binaries](https://github.com/Consensys-Incorporated/teku/releases).
 
 Unpack the downloaded files and change into the `teku-<release>` directory.
 
@@ -48,14 +48,14 @@ Teku requires Java 25+ to run. Earlier versions are not supported. You can insta
 To install Teku using Homebrew:
 
 ```bash
-brew tap ConsenSys/teku
-brew install ConsenSys/teku/teku
+brew tap Consensys-Incorporated/teku
+brew install Consensys-Incorporated/teku/teku
 ```
 
 To upgrade Teku using Homebrew:
 
 ```bash
-brew upgrade ConsenSys/teku/teku
+brew upgrade Consensys-Incorporated/teku/teku
 ```
 
 To display the Teku version and confirm installation:
