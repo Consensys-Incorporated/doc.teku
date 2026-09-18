@@ -52,7 +52,7 @@ teku voluntary-exit                                      \
   --validators-external-signer-public-keys=1e9f2afcc0737f4502e8d4238e4fe82d45077b2a549902b61d65367acecbccba
 ```
 
-Use the [`/eth/v1/beacon/pool/voluntary_exits`](https://consensys.github.io/teku/#tag/Beacon/operation/getPoolVoluntaryExits) API to check the pending exit queue.
+Use the [`/eth/v1/beacon/pool/voluntary_exits`](https://consensys-incorporated.github.io/teku/#tag/Beacon/operation/getPoolVoluntaryExits) API to check the pending exit queue.
 
 ## Create but don't submit an exit
 

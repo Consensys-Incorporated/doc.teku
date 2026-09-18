@@ -20,7 +20,7 @@ Teku provides multiple mechanisms to connect to specific peers:
 
 When you specify a peer, use one of its transport
 [multiaddresses](https://libp2p.io/concepts/fundamentals/addressing/) from the `p2p_addresses` field
-of the [`/eth/v1/node/identity`](https://consensys.github.io/teku/#tag/Node/operation/getNetworkIdentity)
+of the [`/eth/v1/node/identity`](https://consensys-incorporated.github.io/teku/#tag/Node/operation/getNetworkIdentity)
 API endpoint.
 
 :::
@@ -66,7 +66,7 @@ This is the recommended way to maintain a persistent connection between two node
 
 ## Add a static peer at runtime
 
-Use the [`/teku/v1/admin/add_peer`](https://consensys.github.io/teku/#tag/Teku/operation/AddPeer) API endpoint to add a
+Use the [`/teku/v1/admin/add_peer`](https://consensys-incorporated.github.io/teku/#tag/Teku/operation/AddPeer) API endpoint to add a
 static peer at runtime, without restarting Teku.
 Send a `POST` request to the endpoint with the peer's multiaddress as a JSON string in the request body.
 
@@ -100,7 +100,7 @@ To make the connection persistent, use [`--p2p-direct-peers`](#direct-peers) on 
 
 ## Verify a peer is connected
 
-Use the [`/eth/v1/node/peers/{peer_id}`](https://consensys.github.io/teku/#tag/Node/operation/getPeer) API
+Use the [`/eth/v1/node/peers/{peer_id}`](https://consensys-incorporated.github.io/teku/#tag/Node/operation/getPeer) API
 endpoint to look up a single peer by its ID:
 
 ```bash title="Example"

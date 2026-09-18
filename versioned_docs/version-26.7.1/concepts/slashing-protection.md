@@ -58,7 +58,7 @@ The following rules apply to the file:
 
 :::info
 
-You can obtain the `genesisValidatorsRoot` value by using the [`/eth/v1/beacon/genesis`](https://consensys.github.io/teku/#tag/Beacon/operation/getGenesis) API.
+You can obtain the `genesisValidatorsRoot` value by using the [`/eth/v1/beacon/genesis`](https://consensys-incorporated.github.io/teku/#tag/Beacon/operation/getGenesis) API.
 
 :::
 

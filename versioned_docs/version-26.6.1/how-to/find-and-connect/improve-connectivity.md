@@ -35,7 +35,7 @@ View your router or firewall documentation to configure port-forwarding.
 
 ## Check readiness with a peer count
 
-Check the readiness of your node by using the [`get node readiness` API](https://consensys.github.io/teku/#tag/Teku/operation/readiness).
+Check the readiness of your node by using the [`get node readiness` API](https://consensys-incorporated.github.io/teku/#tag/Teku/operation/readiness).
 This check helps to prevent a beacon from receiving traffic from validators while the node is not being connected to enough peers.
 
 You can specify a number in the `target_peer_count` parameter to require a minimum number of peers before the node is considered ready.

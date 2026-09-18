@@ -29,7 +29,7 @@ By default most logging output is sent to the log file, and limited content show
 
 :::tip
 
-Use the [`log_level`](https://consensys.github.io/teku/#tag/Teku/operation/putLogLevel) API method to change the log level while Teku is running.
+Use the [`log_level`](https://consensys-incorporated.github.io/teku/#tag/Teku/operation/putLogLevel) API method to change the log level while Teku is running.
 
 :::
 
