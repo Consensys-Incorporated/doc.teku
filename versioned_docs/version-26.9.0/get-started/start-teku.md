@@ -101,7 +101,7 @@ You can supply multiple beacon node endpoints to the validator. The first one is
 
 ## Confirm Teku is running
 
-Use the [`/liveness`](https://consensys.github.io/teku/#tag/Teku/operation/GetLiveness) endpoint to check whether the node is up.
+Use the [`/liveness`](https://consensys-incorporated.github.io/teku/#tag/Teku/operation/GetLiveness) endpoint to check whether the node is up.
 
 The endpoint returns the status `200 OK` if the node is up or syncing.
 

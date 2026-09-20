@@ -52,7 +52,7 @@ performance.
 ### Check ports
 
 To confirm the ports your node uses, send a request to
-the [`/eth/v1/node/identity`](https://consensys.github.io/teku/#tag/Node/operation/getNetworkIdentity) endpoint.
+the [`/eth/v1/node/identity`](https://consensys-incorporated.github.io/teku/#tag/Node/operation/getNetworkIdentity) endpoint.
 
 ```bash
 curl -s http://127.0.0.1:5051/eth/v1/node/identity | jq '.data | {p2p_addresses, discovery_addresses}'
@@ -103,7 +103,7 @@ See [Network gateway issues](#network-gateway-issues).
 ### Check inbound and outbound peers
 
 To count your node's inbound and outbound peers, send a request to
-the [`/eth/v1/node/peers`](https://consensys.github.io/teku/#tag/Node/operation/getPeers) endpoint.
+the [`/eth/v1/node/peers`](https://consensys-incorporated.github.io/teku/#tag/Node/operation/getPeers) endpoint.
 This command groups peers by direction and counts peer addresses that include `/tcp/` or `/quic`:
 
 ```bash

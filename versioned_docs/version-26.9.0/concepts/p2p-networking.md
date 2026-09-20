@@ -101,6 +101,6 @@ differ:
 - QUIC - `/ip4/<ip>/udp/9001/quic-v1/p2p/<peer_id>`
 
 The `p2p_addresses` field returned by the
-[`/eth/v1/node/identity`](https://consensys.github.io/teku/#tag/Node/operation/getNetworkIdentity)
+[`/eth/v1/node/identity`](https://consensys-incorporated.github.io/teku/#tag/Node/operation/getNetworkIdentity)
 API endpoint lists the TCP and QUIC transport addresses.
 The `discovery_addresses` field lists the UDP discovery address.

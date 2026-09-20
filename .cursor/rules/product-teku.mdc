@@ -17,7 +17,7 @@ Content includes installation, configuration, operations, troubleshooting, and r
 - **Execution pairing**: Teku pairs with an execution client over authenticated Engine API.
 - **Reference areas**:
   - CLI reference lives under `docs/reference/cli/`.
-  - REST API docs are hosted externally at `https://consensys.github.io/teku/`.
+  - REST API docs are hosted externally at `https://consensys-incorporated.github.io/teku/`.
   - `docs/reference/rest.md` should be treated as local guidance/entrypoint content, not the
     canonical full API reference.
 - **Security-sensitive topics**: slashing protection, fee recipient settings, and key management require precise wording.
@@ -40,7 +40,7 @@ Content includes installation, configuration, operations, troubleshooting, and r
 
 ### REST API
 
-- Use [`https://consensys.github.io/teku/`](https://consensys.github.io/teku/) as the canonical
+- Use [`https://consensys-incorporated.github.io/teku/`](https://consensys-incorporated.github.io/teku/) as the canonical
   REST API reference.
 - Keep `docs/reference/rest.md` aligned as a local entrypoint and guidance page.
 - Do not duplicate or drift from canonical endpoint details if they are maintained externally.

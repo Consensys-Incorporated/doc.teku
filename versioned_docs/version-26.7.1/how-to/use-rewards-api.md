@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # View block rewards
 
-Use the [rewards API](https://consensys.github.io/teku/#tag/Rewards) to view the validator rewards.
+Use the [rewards API](https://consensys-incorporated.github.io/teku/#tag/Rewards) to view the validator rewards.
 
 :::note
 

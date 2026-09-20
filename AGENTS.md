@@ -40,7 +40,7 @@ The rules under `.cursor/rules/` cover the most actionable parts of these refere
 ## External API reference
 
 The canonical Teku REST API documentation is hosted at
-[consensys.github.io/teku](https://consensys.github.io/teku/).
+[consensys-incorporated.github.io/teku](https://consensys-incorporated.github.io/teku/).
 Use `docs/reference/rest.md` as local guidance and linking context, not as the primary source for
 complete endpoint definitions.
 

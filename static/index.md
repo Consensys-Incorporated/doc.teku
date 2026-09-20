@@ -26,7 +26,7 @@ for managing consensus layer node operations, and external key management for
 validator signing keys.
 
 The canonical Teku REST API reference is hosted at
-[consensys.github.io/teku](https://consensys.github.io/teku/).
+[consensys-incorporated.github.io/teku](https://consensys-incorporated.github.io/teku/).
 
 ## Agent-readable resources
 

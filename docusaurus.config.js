@@ -129,7 +129,7 @@ const config = {
           },
           {
             label: "API",
-            to: "https://consensys.github.io/teku/",
+            to: "https://consensys-incorporated.github.io/teku/",
           },
           {
             type: "docsVersionDropdown",
