@@ -4614,7 +4614,7 @@ clear your weak subjectivity settings.
 
 [Infura]: https://infura.io/
 [Teku metrics]: ../../how-to/monitor/use-metrics.md
-[Web3Signer]: https://docs.web3signer.consensys.net/en/latest/
+[Web3Signer]: https://docs.web3signer.consensys.com/
 [slashing protection]: ../../concepts/slashing-protection.md
 [weak subjectivity period]: ../../concepts/weak-subjectivity.md
 [load new validators without restarting Teku]: ../../how-to/load-validators-without-restarting.md

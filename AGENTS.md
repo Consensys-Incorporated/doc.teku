@@ -2,7 +2,7 @@
 
 This repository contains the source for the [Teku](https://teku.consensys.io) documentation site.
 It is built with Docusaurus and published at
-[docs.teku.consensys.io](https://docs.teku.consensys.io/).
+[docs.teku.consensys.com](https://docs.teku.consensys.com/).
 
 ## Documentation areas
 

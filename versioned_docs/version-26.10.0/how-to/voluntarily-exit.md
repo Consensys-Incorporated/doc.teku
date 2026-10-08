@@ -87,5 +87,5 @@ The `--beacon-node-api-endpoint` option is required even though the voluntary ex
 
 <!-- links -->
 
-[Web3Signer]: https://docs.web3signer.consensys.net/en/latest/
+[Web3Signer]: https://docs.web3signer.consensys.com/
 [REST API enabled]: ../reference/cli/index.md#rest-api-enabled

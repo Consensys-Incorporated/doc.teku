@@ -5,7 +5,7 @@ const darkCodeTheme = require("prism-react-renderer").themes.dracula;
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Teku documentation",
-  url: "https://docs.teku.consensys.io",
+  url: "https://docs.teku.consensys.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   markdown: {

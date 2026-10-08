@@ -22,4 +22,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://docs.teku.consensys.io/sitemap.xml
+Sitemap: https://docs.teku.consensys.com/sitemap.xml

@@ -42,6 +42,6 @@ You need a [signing key configuration file] for each public key specified using 
 
 <!--links-->
 
-[Web3Signer]: https://docs.web3signer.consensys.net/
-[Signing key configuration files]: https://docs.web3signer.consensys.net/HowTo/Use-Signing-Keys/
-[signing key configuration file]: https://docs.web3signer.consensys.net/en/latest/HowTo/Use-Signing-Keys/
+[Web3Signer]: https://docs.web3signer.consensys.com/
+[Signing key configuration files]: https://docs.web3signer.consensys.com/how-to/load-keys
+[signing key configuration file]: https://docs.web3signer.consensys.com/how-to/load-keys

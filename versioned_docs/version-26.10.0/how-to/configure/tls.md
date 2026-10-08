@@ -74,12 +74,12 @@ In the command:
 
 <!-- links -->
 
-[Web3Signer]: https://docs.web3signer.consensys.net/en/latest/
+[Web3Signer]: https://docs.web3signer.consensys.com/
 [Teku and Web3Signer TLS configuration tutorial]: ../../tutorials/configure-external-signer-tls.md
 [Password-protected PKCS12 keystore and password file]: ../../tutorials/configure-external-signer-tls.md#web3signer-keystore-and-password-file
 [Known clients file]: ../../tutorials/configure-external-signer-tls.md#3-create-the-known-clients-file
 [Teku's password-protected PKCS12 or JKS keystore and password file]: ../../tutorials/configure-external-signer-tls.md#teku-keystore-and-password-file
 [Web3Signer's password-protected PKCS12 or JKS truststore and password file]: ../../tutorials/configure-external-signer-tls.md#2-create-the-truststore-and-password-file
 [Besu]: https://besu.hyperledger.org/public-networks/get-started/install
-[Slashing protection]: https://docs.web3signer.consensys.net/en/latest/concepts/slashing-protection/
-[configure your slashing protection database]: https://docs.web3signer.consensys.net/en/latest/HowTo/Configure-Slashing-Protection/
+[Slashing protection]: https://docs.web3signer.consensys.com/concepts/slashing-protection
+[configure your slashing protection database]: https://docs.web3signer.consensys.com/how-to/configure-slashing-protection

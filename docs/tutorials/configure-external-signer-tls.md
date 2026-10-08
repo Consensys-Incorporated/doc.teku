@@ -19,8 +19,8 @@ utility to generate keystores and a truststore that contain self-signed certific
 
 **Prerequisites**:
 
-- [Web3Signer installed](https://docs.web3signer.consensys.net/en/latest/HowTo/Get-Started/Install-Binaries/).
-- [Web3Signer signing key files](https://docs.web3signer.consensys.net/en/latest/HowTo/Use-Signing-Keys/) for validators on the testnet.
+- [Web3Signer installed](https://docs.web3signer.consensys.com/get-started/install-binaries).
+- [Web3Signer signing key files](https://docs.web3signer.consensys.com/how-to/load-keys) for validators on the testnet.
 - [Teku Installed](../get-started/install/install-binaries.md).
 - [Java `keytool`](https://docs.oracle.com/en/java/javase/12/tools/keytool.html).
 - A running execution client such as [Besu].
@@ -193,6 +193,6 @@ teku \
 
 <!-- links -->
 
-[Web3Signer]: https://docs.web3signer.consensys.net/en/latest/
+[Web3Signer]: https://docs.web3signer.consensys.com/
 [Besu]: https://besu.hyperledger.org/public-networks/get-started/install
-[Web3Signer slashing protection]: https://docs.web3signer.consensys.net/en/latest/concepts/slashing-protection/
+[Web3Signer slashing protection]: https://docs.web3signer.consensys.com/concepts/slashing-protection

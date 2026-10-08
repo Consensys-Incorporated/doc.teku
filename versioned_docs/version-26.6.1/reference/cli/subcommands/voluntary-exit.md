@@ -582,6 +582,6 @@ URL of the external signer (for example, [Web3Signer]).
 
 <!-- links -->
 
-[Web3Signer]: https://docs.web3signer.consensys.net/en/latest/
+[Web3Signer]: https://docs.web3signer.consensys.com/
 [REST API enabled]: ../index.md#rest-api-enabled
 [voluntary exit]: ../../../how-to/voluntarily-exit.md

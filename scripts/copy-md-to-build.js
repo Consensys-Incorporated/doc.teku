@@ -20,7 +20,7 @@
  * page served for `Accept: text/markdown` at /).
  *
  * This lets agents request, e.g.:
- *   https://docs.teku.consensys.io/get-started/install/install-binaries.md
+ *   https://docs.teku.consensys.com/get-started/install/install-binaries.md
  *
  * Only the stable (root) version is covered. The development version and
  * archived versions are intentionally not exported as raw markdown.
