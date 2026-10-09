@@ -7,7 +7,7 @@ body:
     attributes:
       label: Where is the issue?
       description: Link to the documentation page(s) where you identified this issue.
-      placeholder: The issue is on https://docs.teku.consensys.io/<page>. 
+      placeholder: The issue is on https://docs.teku.consensys.com/<page>. 
   - type: checkboxes
     id: issue-type
     attributes:

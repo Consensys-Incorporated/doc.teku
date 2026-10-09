@@ -8,15 +8,15 @@ validator client for participating in Ethereum proof of stake consensus.
 
 Run Teku as a consensus client on Ethereum Mainnet and Ethereum testnets.
 
-- [Teku documentation](https://docs.teku.consensys.io/introduction)
-- [Run Teku from a Docker image](https://docs.teku.consensys.io/get-started/install/run-docker-image)
-- [Install the binary distribution](https://docs.teku.consensys.io/get-started/install/install-binaries)
-- [System requirements](https://docs.teku.consensys.io/get-started/system-requirements)
+- [Teku documentation](https://docs.teku.consensys.com/introduction)
+- [Run Teku from a Docker image](https://docs.teku.consensys.com/get-started/install/run-docker-image)
+- [Install the binary distribution](https://docs.teku.consensys.com/get-started/install/install-binaries)
+- [System requirements](https://docs.teku.consensys.com/get-started/system-requirements)
 
 ## Reference
 
-- [Teku command line options](https://docs.teku.consensys.io/reference/cli)
-- [Teku REST API](https://docs.teku.consensys.io/reference/rest)
+- [Teku command line options](https://docs.teku.consensys.com/reference/cli)
+- [Teku REST API](https://docs.teku.consensys.com/reference/rest)
 
 ## What Teku supports
 
@@ -30,9 +30,9 @@ The canonical Teku REST API reference is hosted at
 
 ## Agent-readable resources
 
-- [llms.txt](https://docs.teku.consensys.io/llms.txt) lists the main documentation pages.
-- [llms-full.txt](https://docs.teku.consensys.io/llms-full.txt) contains the full documentation corpus in one Markdown file.
-- [sitemap.xml](https://docs.teku.consensys.io/sitemap.xml) lists the published site URLs.
+- [llms.txt](https://docs.teku.consensys.com/llms.txt) lists the main documentation pages.
+- [llms-full.txt](https://docs.teku.consensys.com/llms-full.txt) contains the full documentation corpus in one Markdown file.
+- [sitemap.xml](https://docs.teku.consensys.com/sitemap.xml) lists the published site URLs.
 
 ## Questions
 

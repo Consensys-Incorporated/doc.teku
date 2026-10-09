@@ -3842,7 +3842,7 @@ Use the URL to load the public keys from a remote service. For example:
 
 Use the value `external-signer` to load all public keys managed by the external signer.
 Teku automatically queries the external signer's
-[public keys endpoint](https://consensys.github.io/web3signer/#tag/Public-Key).
+[public keys endpoint](https://consensys-incorporated.github.io/web3signer/#tag/Public-Key).
 
 ```bash
 --validators-external-signer-public-keys=external-signer
@@ -4552,7 +4552,7 @@ clear your weak subjectivity settings.
 
 [Infura]: https://infura.io/
 [Teku metrics]: ../../how-to/monitor/use-metrics.md
-[Web3Signer]: https://docs.web3signer.consensys.net/en/latest/
+[Web3Signer]: https://docs.web3signer.consensys.com/
 [slashing protection]: ../../concepts/slashing-protection.md
 [weak subjectivity period]: ../../concepts/weak-subjectivity.md
 [load new validators without restarting Teku]: ../../how-to/load-validators-without-restarting.md

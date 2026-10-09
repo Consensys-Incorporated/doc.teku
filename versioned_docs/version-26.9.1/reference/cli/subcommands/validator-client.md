@@ -865,7 +865,7 @@ Use the URL to load the public keys from a remote service. For example:
 ```
 
 Use the value `external-signer` to load all public keys managed by the external signer. Teku automatically
-queries the external signer's [public keys endpoint](https://consensys.github.io/web3signer/#tag/Public-Key).
+queries the external signer's [public keys endpoint](https://consensys-incorporated.github.io/web3signer/#tag/Public-Key).
 
 ```bash
 --validators-external-signer-public-keys=external-signer
@@ -1213,6 +1213,6 @@ enabled, attestation and block performance is reported using [metrics] in the [`
 
 <!-- links -->
 
-[Web3Signer]: https://docs.web3signer.consensys.net/en/latest/
+[Web3Signer]: https://docs.web3signer.consensys.com/
 [slashing protection]: ../../../concepts/slashing-protection.md
 [metrics]: ../../../how-to/monitor/use-metrics.md
