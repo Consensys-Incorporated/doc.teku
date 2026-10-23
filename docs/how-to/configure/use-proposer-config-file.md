@@ -8,6 +8,7 @@ sidebar_position: 2
 
 You can define complex fee recipient and [builder network](builder-network.md) configurations for multiple validators using a proposer configuration file.
 Specify the proposer configuration file using the [`--validators-proposer-config`](../../reference/cli/index.md#validators-proposer-config) command line option.
+For the builder attributes used from the Glamsterdam upgrade, see [Configure builders for the Glamsterdam upgrade](builder-network-glamsterdam.md#3-configure-builders-per-validator-optional).
 
 :::note
 
