@@ -12,7 +12,8 @@ For the builder attributes used from the Glamsterdam upgrade, see [Configure bui
 
 :::note
 
-To define a single default fee recipient for all validator keys, use the [`--validators-proposer-default-fee-recipient`](../../reference/cli/index.md#validators-proposer-default-fee-recipient) option instead.
+To define a single default fee recipient for all validator keys, use the
+[`--validators-proposer-default-fee-recipient`](../../reference/cli/index.md#validators-proposer-default-fee-recipient) option instead.
 
 :::
 

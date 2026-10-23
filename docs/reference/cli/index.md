@@ -246,8 +246,8 @@ builder-max-execution-payment: 500000000
   </TabItem>
 </Tabs>
 
-Maximum off-chain execution payment, in Gwei, that counts towards a builder's bid.
-The default is `0`, which values bids on their on-chain value only.
+Maximum offchain execution payment, in Gwei, that counts towards a builder's bid.
+The default is `0`, which values bids on their onchain value only.
 Increase it only for builders you trust.
 Applies from the [Glamsterdam upgrade](../../how-to/configure/builder-network-glamsterdam.md).
 
@@ -1922,7 +1922,7 @@ p2p-advertised-ip: "192.168.1.132"
   </TabItem>
 </Tabs>
 
-The peer-to-peer IP address(es) to advertise.
+The peer-to-peer IP addresses to advertise.
 You can define up to two addresses: one IPv4 and one
 [IPv6](../../how-to/find-and-connect/configure-ipv6.md).
 The default address is `127.0.0.1`.
