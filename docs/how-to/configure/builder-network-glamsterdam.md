@@ -19,7 +19,11 @@ After your network activates Glamsterdam:
 - Remove [`--builder-endpoint`](../../reference/cli/index.md#builder-endpoint) and
   [`--validators-builder-registration-default-enabled`](../../reference/cli/index.md#validators-builder-registration-default-enabled).
 
-Teku stops sending validator registrations from Glamsterdam.
+:::caution
+
+Remove these options only after the Glamsterdam upgrade has finalized.
+
+:::
 
 ## 2. Set the builder options
 
