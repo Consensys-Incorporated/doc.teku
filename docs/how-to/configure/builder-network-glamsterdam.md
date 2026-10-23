@@ -13,7 +13,7 @@ Your validator client requests bids from builders, so you no longer need MEV-Boo
 
 ## 1. Remove MEV-Boost after the upgrade
 
-After your network activates Glamsterdam:
+After the Glamsterdam upgrade finalizes:
 
 - Stop MEV-Boost.
 - Remove [`--builder-endpoint`](../../reference/cli/index.md#builder-endpoint) and
