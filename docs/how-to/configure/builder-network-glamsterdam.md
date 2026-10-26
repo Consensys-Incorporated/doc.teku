@@ -9,7 +9,7 @@ sidebar_position: 3
 The Glamsterdam upgrade (the [Gloas fork](https://github.com/ethereum/builder-specs/tree/main/specs/gloas))
 enshrines proposer-builder separation (ePBS).
 Builders send bids directly to proposers or over p2p, and the protocol enforces the winning bid.
-Your validator client requests bids from builders, so you no longer need MEV-Boost.
+Your validator client requests bids from builders, so you no longer need [MEV-Boost](../../concepts/builder-network.md#mev-boost).
 
 ## 1. Remove MEV-Boost after the upgrade
 
@@ -114,7 +114,7 @@ In this example:
 - All other validators use the command line options.
 
 Teku applies values in the following order: the validator's `proposer_config` entry, the
-[Keymanager API](#manage-builders-with-the-keymanager-api), `default_config`, and then the command
+[key manager API](#manage-builders-with-the-keymanager-api), `default_config`, and then the command
 line options.
 
 ## 4. Check your configuration before the upgrade
@@ -130,9 +130,9 @@ Before the upgrade:
 - Set `builder_boost_factor` to `0` for a validator that must always build locally.
   `"enabled": false` doesn't stop p2p bids.
 
-## Manage builders with the Keymanager API
+## Manage builders with the key manager API
 
-Use the `builder_config` endpoints of the [Keymanager API](../../reference/rest.md) to change a
+Use the `builder_config` endpoints of the [key manager API](https://ethereum.github.io/keymanager-APIs/) to change a
 validator's builders at runtime:
 
 - `GET /eth/v1/validator/{pubkey}/builder_config` - Get the configuration in use.

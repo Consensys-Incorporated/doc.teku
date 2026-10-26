@@ -13,6 +13,14 @@ blocks containing an execution payload obtained from their local
 A consensus client can optionally configure an external builder and delegate the
 execution payload construction to it, instead of using the execution client.
 
+:::caution Important
+
+From the Glamsterdam upgrade, builders bid directly and Teku no longer uses
+MEV-Boost.
+See [Configure builders for the Glamsterdam upgrade](../how-to/configure/builder-network-glamsterdam.md).
+
+:::
+
 ## MEV-Boost
 
 The most common builder deployment is to run a specialized external software
