@@ -114,7 +114,7 @@ In this example:
 - All other validators use the command line options.
 
 Teku applies values in the following order: the validator's `proposer_config` entry, the
-[key manager API](#manage-builders-with-the-keymanager-api), `default_config`, and then the command
+[key manager API](#manage-builders-with-the-key-manager-api), `default_config`, and then the command
 line options.
 
 ## 4. Check your configuration before the upgrade
