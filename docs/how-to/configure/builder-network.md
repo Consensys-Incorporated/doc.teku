@@ -15,6 +15,13 @@ payloads for the [consensus client](../../concepts/node-types.md#consensus-clien
 The builder recommends new blocks that are validated by the consensus client.
 If the builder goes down, the local execution client proposes a block instead.
 
+:::caution Important
+
+From the Glamsterdam upgrade, Teku doesn't use MEV-Boost or a builder endpoint.
+See [Configure builders for the Glamsterdam upgrade](builder-network-glamsterdam.md).
+
+:::
+
 Use the following steps to configure Teku to use a builder network.
 
 ## 1. Specify the builder endpoint

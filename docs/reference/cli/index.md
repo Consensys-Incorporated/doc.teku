@@ -135,6 +135,49 @@ value is at least 10% greater than what can be built locally.
 
 Set this option to `BUILDER_ALWAYS` to always use the builder bid, unless the bid is invalid.
 
+### `builder-boost-factor`
+
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
+
+```bash
+--builder-boost-factor=<INTEGER>
+```
+
+  </TabItem>
+  <TabItem value="Example" label="Example" >
+
+```bash
+--builder-boost-factor=90
+```
+
+  </TabItem>
+  <TabItem value="Environment variable" label="Environment variable" >
+
+```bash
+TEKU_BUILDER_BOOST_FACTOR=90
+```
+
+  </TabItem>
+  <TabItem value="Configuration file" label="Configuration file" >
+
+```bash
+builder-boost-factor: 90
+```
+
+  </TabItem>
+</Tabs>
+
+Percentage applied to bids from the builders in [`--builder-urls`](#builder-urls) when compared with the locally built payload.
+The default is `100`.
+
+- `0` always uses the local payload.
+- `100` uses whichever pays more.
+- `18446744073709551615` always uses the bid.
+
+An invalid bid or an unhealthy execution client is never chosen, whatever the factor.
+Applies from the [Glamsterdam upgrade](../../how-to/configure/builder-network-glamsterdam.md).
+
 ### `builder-endpoint`
 
 <Tabs>
@@ -169,6 +212,83 @@ builder-endpoint: "http://127.0.0.1:18550"
 </Tabs>
 
 The address for an external [builder endpoint](../../how-to/configure/builder-network.md).
+
+### `builder-max-execution-payment`
+
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
+
+```bash
+--builder-max-execution-payment=<INTEGER>
+```
+
+  </TabItem>
+  <TabItem value="Example" label="Example" >
+
+```bash
+--builder-max-execution-payment=500000000
+```
+
+  </TabItem>
+  <TabItem value="Environment variable" label="Environment variable" >
+
+```bash
+TEKU_BUILDER_MAX_EXECUTION_PAYMENT=500000000
+```
+
+  </TabItem>
+  <TabItem value="Configuration file" label="Configuration file" >
+
+```bash
+builder-max-execution-payment: 500000000
+```
+
+  </TabItem>
+</Tabs>
+
+Maximum offchain execution payment, in Gwei, that counts towards a builder's bid.
+The default is `0`, which values bids on their onchain value only.
+Increase it only for builders you trust.
+Applies from the [Glamsterdam upgrade](../../how-to/configure/builder-network-glamsterdam.md).
+
+### `builder-min-bid`
+
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
+
+```bash
+--builder-min-bid=<INTEGER>
+```
+
+  </TabItem>
+  <TabItem value="Example" label="Example" >
+
+```bash
+--builder-min-bid=1000000000
+```
+
+  </TabItem>
+  <TabItem value="Environment variable" label="Environment variable" >
+
+```bash
+TEKU_BUILDER_MIN_BID=1000000000
+```
+
+  </TabItem>
+  <TabItem value="Configuration file" label="Configuration file" >
+
+```bash
+builder-min-bid: 1000000000
+```
+
+  </TabItem>
+</Tabs>
+
+Minimum payment, in Gwei, for bids from the builders in [`--builder-urls`](#builder-urls).
+The payment is the bid value plus any counted
+[execution payment](#builder-max-execution-payment).
+The default is `0`.
+Applies from the [Glamsterdam upgrade](../../how-to/configure/builder-network-glamsterdam.md).
 
 ### `builder-set-user-agent-header`
 
@@ -206,6 +326,43 @@ builder-set-user-agent-header: true
 Enables or disables setting the User-Agent header to `teku/v<version>` (for example, `teku/v23.4.0`)
 when making a builder bid request, to help builders identify clients and versions.
 The default is `true`.
+
+### `builder-urls`
+
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
+
+```bash
+--builder-urls=<URL>[,<URL>...]
+```
+
+  </TabItem>
+  <TabItem value="Example" label="Example" >
+
+```bash
+--builder-urls=https://builder1.example.com,https://builder2.example.com
+```
+
+  </TabItem>
+  <TabItem value="Environment variable" label="Environment variable" >
+
+```bash
+TEKU_BUILDER_URLS=https://builder1.example.com,https://builder2.example.com
+```
+
+  </TabItem>
+  <TabItem value="Configuration file" label="Configuration file" >
+
+```bash
+builder-urls: ["https://builder1.example.com", "https://builder2.example.com"]
+```
+
+  </TabItem>
+</Tabs>
+
+Comma-separated list of builder URLs to request bids from when proposing.
+You can specify up to 64 URLs.
+Applies from the [Glamsterdam upgrade](../../how-to/configure/builder-network-glamsterdam.md).
 
 ### `checkpoint-sync-url`
 
@@ -1765,7 +1922,7 @@ p2p-advertised-ip: "192.168.1.132"
   </TabItem>
 </Tabs>
 
-The peer-to-peer IP address(es) to advertise.
+The peer-to-peer IP addresses to advertise.
 You can define up to two addresses: one IPv4 and one
 [IPv6](../../how-to/find-and-connect/configure-ipv6.md).
 The default address is `127.0.0.1`.
@@ -2000,6 +2157,86 @@ The [IPv6](../../how-to/find-and-connect/configure-ipv6.md) UDP port to advertis
 This port is only used when advertising both IPv4 and IPv6 addresses.
 The default is the port specified in [`--p2p-advertised-port-ipv6`](#p2p-advertised-port-ipv6) if it is set.
 Otherwise, the default is the port specified in [`--p2p-port-ipv6`](#p2p-port-ipv6).
+
+### `p2p-builder-boost-factor`
+
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
+
+```bash
+--p2p-builder-boost-factor=<INTEGER>
+```
+
+  </TabItem>
+  <TabItem value="Example" label="Example" >
+
+```bash
+--p2p-builder-boost-factor=80
+```
+
+  </TabItem>
+  <TabItem value="Environment variable" label="Environment variable" >
+
+```bash
+TEKU_P2P_BUILDER_BOOST_FACTOR=80
+```
+
+  </TabItem>
+  <TabItem value="Configuration file" label="Configuration file" >
+
+```bash
+p2p-builder-boost-factor: 80
+```
+
+  </TabItem>
+</Tabs>
+
+Percentage applied to bids received over p2p when compared with the locally built payload.
+The default is `100`.
+
+- `0` always uses the local payload.
+- `100` uses whichever pays more.
+- `18446744073709551615` always uses the bid.
+
+An invalid bid or an unhealthy execution client is never chosen, whatever the factor.
+Applies from the [Glamsterdam upgrade](../../how-to/configure/builder-network-glamsterdam.md).
+
+### `p2p-builder-min-bid`
+
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
+
+```bash
+--p2p-builder-min-bid=<INTEGER>
+```
+
+  </TabItem>
+  <TabItem value="Example" label="Example" >
+
+```bash
+--p2p-builder-min-bid=1000000000
+```
+
+  </TabItem>
+  <TabItem value="Environment variable" label="Environment variable" >
+
+```bash
+TEKU_P2P_BUILDER_MIN_BID=1000000000
+```
+
+  </TabItem>
+  <TabItem value="Configuration file" label="Configuration file" >
+
+```bash
+p2p-builder-min-bid: 1000000000
+```
+
+  </TabItem>
+</Tabs>
+
+Minimum value, in Gwei, for bids received over p2p.
+The default is `0`.
+Applies from the [Glamsterdam upgrade](../../how-to/configure/builder-network-glamsterdam.md).
 
 ### `p2p-direct-peers`
 
