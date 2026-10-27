@@ -117,9 +117,12 @@ Teku applies values in the following order: the validator's `proposer_config` en
 [key manager API](#manage-builders-with-the-key-manager-api), `default_config`, and then the command
 line options.
 
+:::tip
+
 You can use this configuration before the upgrade.
-Until Glamsterdam, Teku ignores `min_bid`, `builder_boost_factor`, and `builders`, and `enabled`
-still controls MEV-Boost registration.
+Until Glamsterdam, Teku ignores `min_bid`, `builder_boost_factor`, and `builders`.
+
+:::
 
 ## Manage builders with the key manager API
 
