@@ -6,8 +6,7 @@ sidebar_position: 3
 
 # Configure builders for the Glamsterdam upgrade
 
-The Glamsterdam upgrade (the [Gloas fork](https://github.com/ethereum/builder-specs/tree/main/specs/gloas))
-enshrines proposer-builder separation (ePBS).
+The Glamsterdam upgrade enshrines proposer-builder separation (ePBS).
 Builders send bids directly to proposers or over p2p, and the protocol enforces the winning bid.
 Your validator client requests bids from builders, so you no longer need [MEV-Boost](../../concepts/builder-network.md#mev-boost).
 
@@ -27,8 +26,11 @@ Remove these options only after the Glamsterdam upgrade has finalized.
 
 ## 2. Set the builder options
 
-Set the following options on your validator client.
-If you run validators in the beacon node, set them on the beacon node.
+By default, Teku doesn't request bids from any builder, and compares bids received over p2p with the local payload.
+Set `--builder-urls` to also request bids from specific builders.
+See the [EthStaker builder list](https://ethstaker.org/mev-relay-list) for builders available on each network.
+
+Set the options on your validator client, or on the beacon node if it runs your validators.
 
 | Option | Default | Description |
 | --- | --- | --- |
@@ -77,8 +79,6 @@ Each `builders` entry has the following attributes:
   The default accepts any builder.
 - `min_bid`, `builder_boost_factor`, `max_execution_payment` - Override the values for this builder.
 
-You can list the same URL more than once with a different `auth_data`.
-
 ```json title="proposer-config.json"
 {
   "proposer_config": {
@@ -117,18 +117,12 @@ Teku applies values in the following order: the validator's `proposer_config` en
 [key manager API](#manage-builders-with-the-key-manager-api), `default_config`, and then the command
 line options.
 
-## 4. Check your configuration before the upgrade
+:::tip
 
-The proposer configuration file works before and after Glamsterdam.
-Teku ignores `min_bid`, `builder_boost_factor`, and `builders` until the upgrade, so you can add
-them now.
+You can use this configuration before the upgrade.
+Until Glamsterdam, Teku ignores `min_bid`, `builder_boost_factor`, and `builders`.
 
-Before the upgrade:
-
-- Remove `"enabled": false` from `default_config` if your validators should use builders.
-  From Glamsterdam, `enabled` means requesting bids instead of registering with MEV-Boost.
-- Set `builder_boost_factor` to `0` for a validator that must always build locally.
-  `"enabled": false` doesn't stop p2p bids.
+:::
 
 ## Manage builders with the key manager API
 
@@ -138,6 +132,3 @@ validator's builders at runtime:
 - `GET /eth/v1/validator/{pubkey}/builder_config` - Get the configuration in use.
 - `POST /eth/v1/validator/{pubkey}/builder_config` - Replace the configuration.
 - `DELETE /eth/v1/validator/{pubkey}/builder_config` - Remove the configuration.
-
-Teku rejects changes for a validator whose `proposer_config` entry sets `min_bid`,
-`builder_boost_factor`, or `builders`.
