@@ -1,6 +1,6 @@
 # Teku documentation
 
-This repository contains the source for the [Teku](https://docs.teku.consensys.com) documentation site.
+This repository contains the source for the [Teku](https://github.com/Consensys-Incorporated/teku) documentation site.
 It is built with Docusaurus and published at
 [docs.teku.consensys.com](https://docs.teku.consensys.com/).
 
