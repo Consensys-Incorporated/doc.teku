@@ -10,12 +10,12 @@ Doppelganger detection checks if the validators' keys are already active before 
 When enabled, doppelganger detection is triggered from two entry points:
 
 1. At [validator client startup](../../get-started/start-teku.md): If at least one
-    doppelganger is detected, the Teku validator client shuts down after it finishes the check with
-    exit code `2`.
-    When this happens, you should not restart Teku by default because validators will likely be slashed.
+   doppelganger is detected, the Teku validator client shuts down after it finishes the check with
+   exit code `2`.
+   When this happens, you should not restart Teku by default because validators will likely be slashed.
 2. When importing keys via the [key manager API](https://ethereum.github.io/keymanager-APIs/): Any detected
-    doppelganger's keys are ignored (not imported).
-    The other keys are imported and the validators start performing their duties after it finishes the check.
+   doppelganger's keys are ignored (not imported).
+   The other keys are imported and the validators start performing their duties after it finishes the check.
 
 :::warning
 

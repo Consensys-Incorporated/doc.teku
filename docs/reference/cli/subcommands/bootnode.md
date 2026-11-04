@@ -48,7 +48,7 @@ Predefined network configuration. The default is `mainnet`.
 Possible values are:
 
 | Network    | Chain           | Type       | Description                                                           |
-|------------|-----------------|------------|-----------------------------------------------------------------------|
+| ---------- | --------------- | ---------- | --------------------------------------------------------------------- |
 | `mainnet`  | Consensus layer | Production | Main network                                                          |
 | `hoodi`    | Consensus layer | Test       | Multi-client testnet                                                  |
 | `ephemery` | Consensus layer | Test       | Multi-client testnet                                                  |
