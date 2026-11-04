@@ -82,10 +82,12 @@ For example, to manually move the file from node A to node B:
 
 ### From a non-Teku node
 
-If moving a validator from a different client to Teku, you can do either of the following:
+If moving a validator from a different client to Teku, do one of the following:
 
 - Manually [create a new slashing protection file] by setting the values based on the validator's last signing details.
 - [Import] the slashing protection file.
+- [Repair empty or invalid slashing protection files].
+  To update every record, follow the steps for [updating all records].
 
 To manually create the file, stop the other client to ensure it isn't signing, then set the following:
 
@@ -101,3 +103,5 @@ Start the Teku node with the validator key.
 [create a new slashing protection file]: #validator-slashing-protection-file
 [import]: ../how-to/prevent-slashing/use-a-slashing-protection-file.md#import-a-slashing-protection-file
 [export]: ../how-to/prevent-slashing/use-a-slashing-protection-file.md#export-a-slashing-protection-file
+[Repair empty or invalid slashing protection files]: ../how-to/prevent-slashing/repair-slashing-protection.md
+[updating all records]: ../how-to/prevent-slashing/repair-slashing-protection.md#update-all-slashing-protection-records
