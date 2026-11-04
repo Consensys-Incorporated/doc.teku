@@ -12,8 +12,7 @@ The rules below cover common conventions in this repository.
 
 ## Line length and sentence breaks
 
-- Wrap lines at roughly 80 columns.
-- Start each new sentence on a new line to keep diffs readable.
+- When writing prose, wrap at about 100 characters. Start each sentence on its own line.
 
 ## Links
 
