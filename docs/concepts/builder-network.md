@@ -25,7 +25,7 @@ See [Configure builders for the Glamsterdam upgrade](../how-to/configure/builder
 
 The most common builder deployment is to run a specialized external software
 such as [MEV-Boost](https://github.com/flashbots/mev-boost).
-MEV-Boost works by requesting a payload proposal from several entities (called 
+MEV-Boost works by requesting a payload proposal from several entities (called
 relays), and selecting the best bid in order to improve validator rewards and
 increase the maximal extractable value (MEV).
 

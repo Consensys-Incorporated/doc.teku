@@ -14,7 +14,7 @@ RocksDB databases use less memory and proves to be more stable with Teku.
 :::caution
 
 We recommend Teku nodes running in [`prune` mode] or [`minimal` mode] (default) use the [manual migration](#manual-migration),
- and Teku nodes running in [`archive` mode] use the [automatic migration](#automatic-migration) method.
+and Teku nodes running in [`archive` mode] use the [automatic migration](#automatic-migration) method.
 
 :::
 
@@ -39,25 +39,25 @@ To migrate the database:
 1. Shut down the local Teku instance.
 
 2. Run [`migrate-database`](../reference/cli/subcommands/migrate-database.md) to create a RocksDB database.
-    Pass your [configuration file](configure/use-config-file.md) or CLI options so that Teku has the correct paths and context.
+   Pass your [configuration file](configure/use-config-file.md) or CLI options so that Teku has the correct paths and context.
 
-    ```bash title="Example"
-    teku migrate-database --data-path /etc/teku/data/
-    ```
+   ```bash title="Example"
+   teku migrate-database --data-path /etc/teku/data/
+   ```
 
-    At a minimum, provide the [`--network`](../reference/cli/subcommands/migrate-database.md#network) and [`--data-path`](../reference/cli/subcommands/migrate-database.md#network) options.
+   At a minimum, provide the [`--network`](../reference/cli/subcommands/migrate-database.md#network) and [`--data-path`](../reference/cli/subcommands/migrate-database.md#network) options.
 
-    :::note
+   :::note
 
-    If not supplied [`--network`](../reference/cli/subcommands/migrate-database.md#network) defaults to `mainnet`.
+   If not supplied [`--network`](../reference/cli/subcommands/migrate-database.md#network) defaults to `mainnet`.
 
-    :::
+   :::
 
 3. The migration process informs you if it succeeded, or provides context to errors. If successful, then confirm Teku functions correctly.
 
-    ```bash title="Example"
-    teku --data-path /etc/teku/data/
-    ```
+   ```bash title="Example"
+   teku --data-path /etc/teku/data/
+   ```
 
 4. If Teku is running correctly, remove the `beacon.old` directory from the [`--data-path`](../reference/cli/subcommands/migrate-database.md#network) directory.
 
@@ -78,18 +78,18 @@ To migrate a LevelDB database in [`minimal` mode] or [`prune` mode] to a RocksDB
 1. Stop the Teku node you intend to migrate.
 
 2. Clear the beacon database, either:
-    - Restart Teku with
-   [`--force-clear-db`](../reference/cli/index.md#force-clear-db)
-    - Manually delete the `beacon/db` directory in your [data path](../reference/cli/index.md#data-base-path-data-path) and `beacon/db.version` file.
+   - Restart Teku with
+     [`--force-clear-db`](../reference/cli/index.md#force-clear-db)
+   - Manually delete the `beacon/db` directory in your [data path](../reference/cli/index.md#data-base-path-data-path) and `beacon/db.version` file.
 
-    :::warning
+   :::warning
 
-    If you manually delete, ensure not to delete the `validator` directory if one is present as this contains your slashing protection data.
+   If you manually delete, ensure not to delete the `validator` directory if one is present as this contains your slashing protection data.
 
-    :::
+   :::
 
 3. Add the [`--checkpoint-sync-url`](../reference/cli/index.md#checkpoint-sync-url) option with link to any community state provider to Teku command line and start Teku.
- Check [Start Teku from a recent state] for more information.
+   Check [Start Teku from a recent state] for more information.
 
 Teku creates a RocksDB database, and starts from the specified recent state. Teku should be in sync and validating within minutes.
 

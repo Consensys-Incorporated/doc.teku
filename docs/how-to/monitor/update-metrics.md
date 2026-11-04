@@ -14,12 +14,12 @@ With the upgrade of the Prometheus library, Teku introduces the following change
 - The `_created` timestamps are not returned by default.
 - Some JVM metric names are changing to adhere to the OTEL standard.
 
-If you are using a custom dashboard, you must update the metric names to reflect these changes.  
+If you are using a custom dashboard, you must update the metric names to reflect these changes.
 
 The following table lists the name changes for Teku metrics:
 
 | Previous Teku metric name                | New Teku metric name               |
-|------------------------------------------|------------------------------------|
+| ---------------------------------------- | ---------------------------------- |
 | `beacon_proposers_data_total`            | `beacon_proposers_data`            |
 | `beacon_eth1_current_period_votes_total` | `beacon_eth1_current_period_votes` |
 | `jvm_memory_bytes_committed`             | `jvm_memory_committed_bytes`       |

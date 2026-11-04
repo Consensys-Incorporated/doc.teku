@@ -32,14 +32,14 @@ See the [EthStaker builder list](https://ethstaker.org/mev-relay-list) for build
 
 Set the options on your validator client, or on the beacon node if it runs your validators.
 
-| Option | Default | Description |
-| --- | --- | --- |
-| [`--builder-urls`](../../reference/cli/index.md#builder-urls) | None | Builders to request bids from. |
-| [`--builder-min-bid`](../../reference/cli/index.md#builder-min-bid) | `0` | Minimum payment, in Gwei, for bids from your builders. |
-| [`--builder-boost-factor`](../../reference/cli/index.md#builder-boost-factor) | `100` | Percentage applied to your builders' bids when compared with the local payload. |
-| [`--builder-max-execution-payment`](../../reference/cli/index.md#builder-max-execution-payment) | `0` | Maximum offchain execution payment, in Gwei, that counts towards a bid. |
-| [`--p2p-builder-min-bid`](../../reference/cli/index.md#p2p-builder-min-bid) | `0` | Minimum payment, in Gwei, for bids received over p2p. |
-| [`--p2p-builder-boost-factor`](../../reference/cli/index.md#p2p-builder-boost-factor) | `100` | Percentage applied to p2p bids when compared with the local payload. |
+| Option                                                                                          | Default | Description                                                                     |
+| ----------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------- |
+| [`--builder-urls`](../../reference/cli/index.md#builder-urls)                                   | None    | Builders to request bids from.                                                  |
+| [`--builder-min-bid`](../../reference/cli/index.md#builder-min-bid)                             | `0`     | Minimum payment, in Gwei, for bids from your builders.                          |
+| [`--builder-boost-factor`](../../reference/cli/index.md#builder-boost-factor)                   | `100`   | Percentage applied to your builders' bids when compared with the local payload. |
+| [`--builder-max-execution-payment`](../../reference/cli/index.md#builder-max-execution-payment) | `0`     | Maximum offchain execution payment, in Gwei, that counts towards a bid.         |
+| [`--p2p-builder-min-bid`](../../reference/cli/index.md#p2p-builder-min-bid)                     | `0`     | Minimum payment, in Gwei, for bids received over p2p.                           |
+| [`--p2p-builder-boost-factor`](../../reference/cli/index.md#p2p-builder-boost-factor)           | `100`   | Percentage applied to p2p bids when compared with the local payload.            |
 
 For example:
 
