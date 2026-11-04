@@ -8,12 +8,14 @@ sidebar_position: 2
 
 Use the [`slashing-protection repair`] subcommand to repair empty or invalid [slashing protection] files.
 Teku writes a minimum block slot and attestation epoch to each repaired file.
-This prevents your validator from signing duties before that point.
+Your validator cannot sign a block at or before that slot.
+It also cannot sign an attestation whose target epoch is at or before that epoch.
 
 Repair slashing protection data when:
 
 - Your slashing protection files exist, but they're empty or invalid.
-- You want to ensure your validator keys can't sign duties before a specific slot.
+- You want every record, including records Teku can already read, to block signing up to a slot you choose.
+  See [Update all slashing protection records](#update-all-slashing-protection-records).
 
 :::warning
 
@@ -25,8 +27,12 @@ Teku then has no record of what that validator has signed.
 
 ## Prerequisites
 
-- Stop your validator client and confirm the process has fully exited and won't be restarted.
-  Teku caches slashing protection data while running, and the repair updates that data.
+- Stop your validator client and confirm the process has fully exited.
+  Keep it stopped until the repair finishes, including preventing a service manager from starting it.
+  Teku keeps slashing protection records in memory while it runs.
+  Repair writes the files on disk, and a running validator client does not reload them.
+  The running client can also overwrite the repaired files the next time it signs.
+  Start it again after you verify the repaired files.
 
 ## Repair slashing protection files
 
@@ -106,8 +112,9 @@ but they might not include your validator's most recent duties, for example:
 - Your validator keys previously ran on another node,
   and your local records don't include the duties signed there.
 
-Updating all records ensures your validator can't sign duties before the specified slot,
-even when Teku can read the existing record.
+Choose a slot after the last duty your validator signed on any node.
+Teku will not sign that slot, or any earlier slot.
+If the slot is too early, Teku can still sign the later duties.
 
 To update all records, use
 [`--update-all-enabled`](../../reference/cli/subcommands/slashing-protection.md#update-all-enabled):

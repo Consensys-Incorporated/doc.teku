@@ -264,7 +264,8 @@ Teku imports the file to the `<data-path>/validators/slashprotection/` directory
 
 :::caution
 
-Before running the repair, stop your validator client and confirm the process has fully exited and won't be restarted.
+Before running the repair, stop your validator client and confirm the process has fully exited.
+Keep it stopped until the repair finishes.
 
 :::
 
