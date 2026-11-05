@@ -138,6 +138,9 @@ Example: If the beacon chain controller has issues starting P2P services on a pa
 
 Example 2: If the migrate database command does not successfully migrate the database, Teku will exit with a code 1 fatal error. Restarting the system could correct this.
 
+An out-of-memory error in direct buffer memory also exits with code 1.
+Restart Teku without changing the configuration.
+
 ### Exit code 2
 
 This code indicates a scenario where Teku has exited with a fatal error. Restarting Teku will not correct this.
@@ -146,6 +149,13 @@ Note that most user configuration errors fall into this category.
 
 Example: If you specify an invalid database version in the migrate database command, Teku will exit with a code 2 fatal error.
 To correct this, make the appropriate changes to the setup and then restart Teku.
+
+### Exit code 3
+
+Teku exits with code 3 when the JVM runs out of heap memory.
+The process aborts immediately, and shutdown hooks do not run.
+The database recovers from its write-ahead log on the next start.
+Restart Teku without changing the configuration.
 
 ### Usages
 
@@ -157,9 +167,11 @@ The **service unit configuration** file is an example of how status codes can be
 The following is an example of a [`systemd.service`](https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html) file:
 
 ```text
-RestartForceExitStatus=1
+RestartForceExitStatus=1 3
 RestartPreventExitStatus=2
 ```
+
+`RestartForceExitStatus=1 3` restarts Teku after an out-of-memory abort as well as after exit code 1.
 
 <!-- links -->
 
