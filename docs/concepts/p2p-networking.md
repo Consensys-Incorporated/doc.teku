@@ -59,11 +59,11 @@ reconnect to reliably.
 
 Teku exposes a listening port and an advertised port for each transport and for peer discovery:
 
-| Purpose | Protocol | Default port | Listening option | Advertised option |
-| --- | --- | --- | --- | --- |
-| TCP transport | TCP | `9000` | [`--p2p-port`](../reference/cli/index.md#p2p-port) | [`--p2p-advertised-port`](../reference/cli/index.md#p2p-advertised-port) |
-| Peer discovery | UDP | `9000` | [`--p2p-udp-port`](../reference/cli/index.md#p2p-udp-port) | [`--p2p-advertised-udp-port`](../reference/cli/index.md#p2p-advertised-udp-port) |
-| QUIC transport | UDP | `9001` | [`--p2p-quic-port`](../reference/cli/index.md#p2p-quic-port) | [`--p2p-advertised-quic-port`](../reference/cli/index.md#p2p-advertised-quic-port) |
+| Purpose        | Protocol | Default port | Listening option                                             | Advertised option                                                                  |
+| -------------- | -------- | ------------ | ------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| TCP transport  | TCP      | `9000`       | [`--p2p-port`](../reference/cli/index.md#p2p-port)           | [`--p2p-advertised-port`](../reference/cli/index.md#p2p-advertised-port)           |
+| Peer discovery | UDP      | `9000`       | [`--p2p-udp-port`](../reference/cli/index.md#p2p-udp-port)   | [`--p2p-advertised-udp-port`](../reference/cli/index.md#p2p-advertised-udp-port)   |
+| QUIC transport | UDP      | `9001`       | [`--p2p-quic-port`](../reference/cli/index.md#p2p-quic-port) | [`--p2p-advertised-quic-port`](../reference/cli/index.md#p2p-advertised-quic-port) |
 
 The default port applies to the whole row: Teku listens on it and advertises it until you override
 one or both options.

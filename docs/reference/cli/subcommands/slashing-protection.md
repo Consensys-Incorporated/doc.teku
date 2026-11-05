@@ -381,7 +381,7 @@ Predefined network configuration. Accepts a predefined network name, or file pat
 Possible values are:
 
 | Network    | Chain           | Type       | Description                                                           |
-|------------|-----------------|------------|-----------------------------------------------------------------------|
+| ---------- | --------------- | ---------- | --------------------------------------------------------------------- |
 | `mainnet`  | Consensus layer | Production | Main network                                                          |
 | `hoodi`    | Consensus layer | Test       | Multi-client testnet                                                  |
 | `ephemery` | Consensus layer | Test       | Multi-client testnet                                                  |

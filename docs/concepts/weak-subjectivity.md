@@ -28,9 +28,9 @@ continue syncing from it (either when starting a new node or after your node has
 Teku provides three methods to safely sync a node that is new to the network or has been offline for an extended period.
 
 1. Use [`--checkpoint-sync-url`](../reference/cli/index.md#checkpoint-sync-url) to supply a URL of a
-    checkpoint state endpoint from which to sync.
+   checkpoint state endpoint from which to sync.
 2. Use [`--initial-state`](../reference/cli/index.md#initial-state) to supply an SSZ encoded state
-    file from which to sync.
+   file from which to sync.
 
 We recommend using `--checkpoint-sync-url` on Mainnet.
 

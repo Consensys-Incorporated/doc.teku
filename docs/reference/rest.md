@@ -49,12 +49,8 @@ curl -X GET "http://localhost:5051/eth/v1/node/identity"
   "data": {
     "peer_id": "16Uiu2HAkuWPWqF4W3aw9oo5Yw79v5muzBaaGTGKumuXR8qkSVq6y",
     "enr": "enr:-KG4QJ3PlL-XIRZCBq3L-uZ4wovEVEvxUMmvv75YDk9imb21clm0x3V2J5Vf9Zz3tLDpTplhG68_kzZPOxcU0ttwNDAEhGV0aDKQtTA_KgAAAAD__________4JpZIJ2NIJpcIS5a1YhiXNlY3AyNTZrMaECATVJhRqBrqyo8l6JKz6HidWL82kQcDmtKWuQZLDmZmqDdGNwgiMog3VkcILZIg",
-    "p2p_addresses": [
-      "/ip4/10.0.0.42/tcp/9000/p2p/16Uiu2HAkuWPWqF4W3aw9oo5Yw79v5muzBaaGTGKumuXR8qkSVq6y"
-    ],
-    "discovery_addresses": [
-      "/ip4/10.0.0.42/udp/55586/p2p/16Uiu2HAkuWPWqF4W3aw9oo5Yw79v5muzBaaGTGKumuXR8qkSVq6y"
-    ],
+    "p2p_addresses": ["/ip4/10.0.0.42/tcp/9000/p2p/16Uiu2HAkuWPWqF4W3aw9oo5Yw79v5muzBaaGTGKumuXR8qkSVq6y"],
+    "discovery_addresses": ["/ip4/10.0.0.42/udp/55586/p2p/16Uiu2HAkuWPWqF4W3aw9oo5Yw79v5muzBaaGTGKumuXR8qkSVq6y"],
     "metadata": {
       "seq_number": "0",
       "attnets": "0x0000000000000000"
@@ -73,12 +69,12 @@ options to control which hosts and network interfaces Teku's REST API responds t
 Configure the API to listen on specific IP addresses or all interfaces with `rest-api-interface` and control
 which hosts can connect using `rest-api-host-allowlist`:
 
-| Configuration | Interface | Allowlist | Result |
-|---------------|-----------|-----------|--------|
-| Listen on all IP addresses and allow all hosts | `rest-api-interface="0.0.0.0"` | `rest-api-host-allowlist=["*"]` | Enables connections from any address, such as `localhost` (`127.0.0.1`) or `10.0.0.1`. |
-| Listen on a specific IP address (`10.0.0.1`) and allow all hosts | `rest-api-interface="10.0.0.1"` | `rest-api-host-allowlist=["*"]` | Only the specified IP (`10.0.0.1`) can connect, and attempts from `localhost` (`127.0.0.1`) will fail. |
-| Listen on all IP addresses but allow only `localhost` | `rest-api-interface="0.0.0.0"` | `rest-api-host-allowlist=["127.0.0.1"]` | Only `localhost` (`127.0.0.1`) can connect; other IP addresses (for example `10.0.0.1`) will receive a 403 error. |
-| Listen on a specific IP address (`10.0.0.1`) but allow only `localhost` (`127.0.0.1`) | `rest-api-interface="10.0.0.1"` | `rest-api-host-allowlist=["127.0.0.1"]` | Neither can connect. `localhost` can't reach the server, and `10.0.0.1` is blocked. |
+| Configuration                                                                         | Interface                       | Allowlist                               | Result                                                                                                            |
+| ------------------------------------------------------------------------------------- | ------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Listen on all IP addresses and allow all hosts                                        | `rest-api-interface="0.0.0.0"`  | `rest-api-host-allowlist=["*"]`         | Enables connections from any address, such as `localhost` (`127.0.0.1`) or `10.0.0.1`.                            |
+| Listen on a specific IP address (`10.0.0.1`) and allow all hosts                      | `rest-api-interface="10.0.0.1"` | `rest-api-host-allowlist=["*"]`         | Only the specified IP (`10.0.0.1`) can connect, and attempts from `localhost` (`127.0.0.1`) will fail.            |
+| Listen on all IP addresses but allow only `localhost`                                 | `rest-api-interface="0.0.0.0"`  | `rest-api-host-allowlist=["127.0.0.1"]` | Only `localhost` (`127.0.0.1`) can connect; other IP addresses (for example `10.0.0.1`) will receive a 403 error. |
+| Listen on a specific IP address (`10.0.0.1`) but allow only `localhost` (`127.0.0.1`) | `rest-api-interface="10.0.0.1"` | `rest-api-host-allowlist=["127.0.0.1"]` | Neither can connect. `localhost` can't reach the server, and `10.0.0.1` is blocked.                               |
 
 ## Enable the validator client API
 
