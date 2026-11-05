@@ -29,11 +29,11 @@ Attributes for each proposer configuration are:
 - `fee_recipient` - (optional in `proposer_config` but required in `default_config`) The fee recipient to use when proposing blocks.
 - `builder` - (optional) The [builder network configuration](builder-network.md), which includes the following attributes:
   - `enabled` - (optional in `proposer_config` but required in `default_config`) Indicates whether to use the [builder endpoint](../../reference/cli/index.md#builder-endpoint) when proposing blocks.
-     The default is `false`.
+    The default is `false`.
   - `gas_limit` - (optional) Gas limit for the builder. The default is `36000000`.
   - `registration_overrides` - (optional) Dedicated overrides to use during the registration process.
-     Useful for distributed validator technology (DVT) and secret shared validator (SSV) technology.
-     The override is specified using the following attributes:
+    Useful for distributed validator technology (DVT) and secret shared validator (SSV) technology.
+    The override is specified using the following attributes:
     - `timestamp` - (optional) Timestamp to be used (instead of the current time) in the validator registration message.
     - `public_key` - (optional in `proposer_config` but forbidden in `default_config`) Public key to be used (instead of the validator's public key) in the validator registration message.
 

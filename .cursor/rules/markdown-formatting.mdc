@@ -12,8 +12,7 @@ The rules below cover common conventions in this repository.
 
 ## Line length and sentence breaks
 
-- Wrap lines at roughly 80 columns.
-- Start each new sentence on a new line to keep diffs readable.
+- When writing prose, wrap at about 100 characters. Start each sentence on its own line.
 
 ## Links
 
@@ -52,3 +51,18 @@ The rules below cover common conventions in this repository.
 ## Diagrams
 
 - Use Mermaid where diagrams are needed and the page already follows that pattern.
+
+## Prettier
+
+A Husky pre-commit hook runs Prettier on staged Markdown, MDX, JavaScript, and JSON.
+CI checks documentation Markdown with `npm run format:docs:check`.
+
+Prettier preserves existing line breaks in Markdown and MDX. It can break a Markdown
+list nested in HTML or JSX. Wrap that block so Prettier leaves it alone. Put both
+comments at the start of the line:
+
+- In `.md` files, use `<!-- prettier-ignore-start -->` and `<!-- prettier-ignore-end -->`.
+- In `.mdx` files, use `{/* prettier-ignore-start */}` and `{/* prettier-ignore-end */}`.
+
+Use the form that matches the file type. HTML comments fail MDX compilation, and
+Prettier does not recognize JSX comments in Markdown.

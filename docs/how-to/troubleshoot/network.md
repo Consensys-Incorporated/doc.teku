@@ -45,7 +45,7 @@ By default, Teku attempts to get 100 peers. You can increase the number of peers
 lead to increased network traffic and a higher number of messages requiring validation.
 
 Teku's attempt to connect with peers is influenced by two CLI options: [`--p2p-peer-lower-bound`](../../reference/cli/index.md#p2p-peer-lower-bound) (default is 64)
-and [`--p2p-peer-upper-bound`](../../reference/cli/index.md#p2p-peer-upper-bound) (default is 100).  If you notice a
+and [`--p2p-peer-upper-bound`](../../reference/cli/index.md#p2p-peer-upper-bound) (default is 100). If you notice a
 decline in your beacon node's participation after reducing these parameters, consider increasing them to enhance
 performance.
 
@@ -64,13 +64,8 @@ For example:
 
 ```json
 {
-  "p2p_addresses": [
-    "/ip4/192.0.2.10/tcp/9000/p2p/16Uiu2HAm...",
-    "/ip4/192.0.2.10/udp/9001/quic-v1/p2p/16Uiu2HAm..."
-  ],
-  "discovery_addresses": [
-    "/ip4/192.0.2.10/udp/9000"
-  ]
+  "p2p_addresses": ["/ip4/192.0.2.10/tcp/9000/p2p/16Uiu2HAm...", "/ip4/192.0.2.10/udp/9001/quic-v1/p2p/16Uiu2HAm..."],
+  "discovery_addresses": ["/ip4/192.0.2.10/udp/9000"]
 }
 ```
 
@@ -256,7 +251,7 @@ References:
 
 - No peers might have been present on the attestation subnet.
   Check for a log message when attempting to publish without subscribed peers: `Failed to publish ... for slot ... due
-  to missing peers on the required gossip topic`.
+to missing peers on the required gossip topic`.
 - Several factors could contribute, such as delayed blocks past your inclusion slot causing ripple effects.
   Thus, examining epochs where your attestation was scheduled and checking for late block import warnings would be beneficial.
 - Also, consider specific times of day and concurrent network activities.
