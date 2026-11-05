@@ -45,11 +45,11 @@ Doppelganger detection runs until one of the following occurs:
 
 The observation window begins with the first successful check for validator activity.
 If the beacon node can't provide the required data, Teku keeps doppelganger detection pending,
-retries every 12 seconds and doesn't schedule duties for the affected validators.
-There is no overall detection timeout.
+retries every 12 seconds, and doesn't schedule duties for the affected validators.
+Teku imposes no overall detection timeout.
 
 If a check can't be completed, Teku resets the observation window. When checks succeed again, it
-starts a new two epochs window while retaining any doppelgangers already detected. At the end of the
+starts a new two-epoch window while retaining any doppelgangers already detected. At the end of the
 window, Teku checks the previous and current epochs before completing detection. The validators
 might therefore remain inactive for longer than two epochs.
 
