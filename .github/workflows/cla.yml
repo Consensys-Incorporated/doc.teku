@@ -7,15 +7,16 @@ on:
   pull_request_target:
     types: [opened,closed,synchronize]
 
-permissions:
-  actions: write
-  contents: write # 'write' = this repo itself, 'read' = remote repository
-  pull-requests: write
-  statuses: write
+permissions: {} # lock everything by default (least-privilege)
 
 jobs:
   CLAAssistant:
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write # 'write' = this repo itself, 'read' = remote repository
+      pull-requests: write
+      statuses: write
     steps:
       - name: "CLA Assistant"
         if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA') || github.event_name == 'pull_request_target'

@@ -6,12 +6,14 @@ on:
     branches:
       - main
 
+permissions: {} # lock everything by default (least-privilege)
+
 jobs:
   lint:
     name: Lint code and Markdown
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: read  # least-privilege for this job only
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 

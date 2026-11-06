@@ -6,6 +6,8 @@ on:
     branches:
       - main
 
+permissions: {} # lock everything by default (least-privilege)
+
 jobs:
   case:
     name: Check for case being inconsistent
@@ -14,13 +16,12 @@ jobs:
       matrix:
         folder: ["docs"]
     permissions:
-      contents: read
+      contents: read  # least-privilege for this job only
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Case check action
         uses: Consensys-Incorporated/github-actions/docs-case-check@89c262a30cae735be99dc776f9556b796fb456ca # v1.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOC_DIR: ${{ matrix.folder }}
           SKIP_TEST: true
