@@ -81,7 +81,10 @@
   "overrides": {
     "minimatch@9.0.3": "11.0.5",
     "serialize-javascript": "7.1.4",
-    "tinypool": "2.2.0"
+    "tinypool": "2.2.0",
+    "sockjs": {
+      "uuid": "11.1.1"
+    }
   },
   "commitlint": {
     "extends": [
