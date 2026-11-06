@@ -107,7 +107,7 @@ If all recent attestations are marked as missed, check the following:
 
 - **Do you have peers?**
 
-  The nodes's peer count is printed at the end of each slot event in the log. [Ensure your local network is configured correctly] to allow the node to listen for incoming P2P connections and discover peers.
+  The node's peer count is printed at the end of each slot event in the log. [Ensure your local network is configured correctly] to allow the node to listen for incoming P2P connections and discover peers.
 
 ## UnsatisfiedLinkError when starting Teku
 
