@@ -5,7 +5,8 @@ sidebar_position: 2
 
 # Detect doppelgangers
 
-Doppelganger detection checks if the validators' keys are already active before scheduling any of their duties (the validators stay inactive for at most two epochs). This can help prevent slashing offenses.
+Doppelganger detection checks if the validators' keys are already active before scheduling any of
+their duties. The validators remain inactive until detection completes. This can help prevent slashing offenses.
 
 When enabled, doppelganger detection is triggered from two entry points:
 
@@ -31,16 +32,26 @@ Enable doppelganger detection by setting the
 option to `true`.
 
 Your validator client must be connected to a beacon node with validator liveness tracking enabled.
-Enable validator liveness tracking by setting the [`--beacon-liveness-tracking-enabled`](../../reference/cli/index.md#beacon-liveness-tracking-enabled) option to `true`.
+On that beacon node, enable validator liveness tracking by setting the
+[`--beacon-liveness-tracking-enabled`](../../reference/cli/index.md#beacon-liveness-tracking-enabled)
+option to `true`.
 
 ## Side effects
 
 Doppelganger detection runs until one of the following occurs:
 
 - All the loaded keys are detected as active.
-- The check runs for two epochs.
+- The two-epoch observation window ends, and the final checks succeed.
 
-This means that the validators being checked are inactive for at most two epochs.
+The observation window begins with the first successful check for validator activity.
+If the beacon node can't provide the required data, Teku keeps doppelganger detection pending,
+retries every 12 seconds, and doesn't schedule duties for the affected validators.
+Teku imposes no overall detection timeout.
+
+If a check can't be completed, Teku resets the observation window. When checks succeed again, it
+starts a new two-epoch window while retaining any doppelgangers already detected. At the end of the
+window, Teku checks the previous and current epochs before completing detection. The validators
+might therefore remain inactive for longer than two epochs.
 
 :::warning
 
@@ -64,8 +75,16 @@ When running, doppelganger detection prints various logs.
 Starting doppelganger detection for public keys: b28ab22, c2bab15, cd26f5e
 ```
 
-```bash title="Example logs when a check is performed (every 12 seconds)"
-Performing doppelganger check. Epoch 148220, Public keys b28ab22, c2bab15, cd26f5e
+```bash title="Example logs when a check is performed"
+Performing doppelganger check at epoch 148220 for public keys b28ab22, c2bab15, cd26f5e
+```
+
+```bash title="Example logs when required beacon node data is unavailable"
+Doppelganger detection is temporarily unavailable for public keys b28ab22, c2bab15, cd26f5e. Duties for these public keys remain disabled while Teku retries. Reason: Unable to get validator indices: Request timeout
+```
+
+```bash title="Example logs when detection resumes"
+Beacon node is available. Resuming doppelganger detection for public keys b28ab22, c2bab15, cd26f5e.
 ```
 
 ```bash title="Example logs when a doppelganger is detected"
