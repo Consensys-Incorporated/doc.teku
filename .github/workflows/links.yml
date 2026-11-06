@@ -12,7 +12,7 @@ jobs:
 
   linkCheck:
     name: Link Checking
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # docs-link-check applies its Chrome sandbox fix on 24.04 only
     permissions:
       contents: read  # least-privilege for this job only
     steps:
