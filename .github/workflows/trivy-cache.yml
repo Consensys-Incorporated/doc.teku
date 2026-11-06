@@ -9,10 +9,14 @@ on:
   schedule:
     - cron: "0 1 * * *"      
 
+permissions: {} # lock everything by default (least-privilege)
+
 jobs:
   trivy:
     name: Run trivy scanner
     runs-on: ubuntu-latest
+    permissions:
+      contents: read  # least-privilege for this job only
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Trivy Cache

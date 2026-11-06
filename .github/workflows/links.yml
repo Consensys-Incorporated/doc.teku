@@ -6,11 +6,15 @@ on:
     branches:
       - main
 
+permissions: {} # lock everything by default (least-privilege)
+
 jobs:
 
   linkCheck:
     name: Link Checking
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # docs-link-check applies its Chrome sandbox fix on 24.04 only
+    permissions:
+      contents: read  # least-privilege for this job only
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: LinkCheck
