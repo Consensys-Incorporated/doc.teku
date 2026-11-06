@@ -16,7 +16,7 @@ Do not use listed variants unless they appear in code, URLs, or direct quotation
 | Required term                         | Do not use                                              |
 |---------------------------------------|---------------------------------------------------------|
 | Teku                                  | teku, TEKU (except in code/URLs/CLI)                   |
-| ConsenSys Teku                        | Consensys Teku                                          |
+| Consensys Teku                        | ConsenSys Teku                                          |
 | beacon node                           | beacon chain node                                       |
 | validator client                      | validator node (unless explicitly discussing nodes)     |
 | execution client                      | EL client (spell out on first use)                      |

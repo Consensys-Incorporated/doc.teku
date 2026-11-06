@@ -212,7 +212,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} ConsenSys, Inc.`,
+        copyright: `© ${new Date().getFullYear()} Consensys, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,

@@ -50,7 +50,7 @@ For each keystore you must create a plain text file containing the password to d
       -keyalg RSA                       \
       -keysize 2048                     \
       -validity 109500                  \
-      -dname "CN=localhost, OU=PegaSys, O=ConsenSys, L=Brisbane, ST=QLD, C=AU" \
+      -dname "CN=localhost, OU=PegaSys, O=Consensys, L=Brisbane, ST=QLD, C=AU" \
       -ext san=dns:localhost,ip:127.0.0.1
     ```
 
@@ -85,7 +85,7 @@ Teku presents the keystore to Web3Signer for TLS mutual authentication. We recom
       -keyalg RSA                        \
       -keysize 2048                      \
       -validity 109500                   \
-      -dname "CN=teku, OU=PegaSys, O=ConsenSys, L=Brisbane, ST=QLD, C=AU"
+      -dname "CN=teku, OU=PegaSys, O=Consensys, L=Brisbane, ST=QLD, C=AU"
     ```
 
     :::info
