@@ -1,4 +1,3 @@
----
 name: Nightly check
 
 on:
@@ -15,30 +14,29 @@ permissions: {} # lock everything by default (least-privilege)
 jobs:
   linkCheck:
     name: Run link check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # docs-link-check applies its Chrome sandbox fix on 24.04 only
     permissions:
-      contents: read  # least-privilege for this job only
+      contents: read
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
       - name: LinkCheck
-        id: linkcheck
-        uses: umbrelladocs/action-linkspector@568ec8d29fa92b31fd9ea5381e155c51e922af83 # v1
+        uses: Consensys-Incorporated/github-actions/docs-link-check@89c262a30cae735be99dc776f9556b796fb456ca # v1.0.0
         with:
-          reporter: github-check
-          fail_level: error
-          config_file: .linkspector.yml
+          CONFIG_FILE: .linkspector.yml
 
   slackNotification:
     needs: linkCheck
     if: ${{ failure() }}
-    runs-on: ubuntu-latest
-    permissions: {}   # zero scopes
+    runs-on: ubuntu-24.04
+    permissions: {}
     steps:
       - name: Slack Notification
         uses: Consensys-Incorporated/github-actions/slack-notify@89c262a30cae735be99dc776f9556b796fb456ca # v1.0.0
         with:
-          SLACK_CHANNEL: doc-ci-alerts
+          SLACK_CHANNEL: ci-documentation
           SLACK_COLOR: danger
-          SLACK_TITLE: Teku docs nightly build - Failure
+          SLACK_TITLE: Teku docs nightly link check - Failure
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
