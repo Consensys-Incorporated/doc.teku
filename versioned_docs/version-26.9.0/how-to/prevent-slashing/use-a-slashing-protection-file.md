@@ -19,7 +19,7 @@ If using an external signer that implements its own slashing protection (for exa
 
 ## Import a slashing protection file
 
-When importing the slashing protection file, Teku imports the file to the `<data-path>/validators/slashprotection/` directory in the format `<validator-pubkey>.yml` (with no 0x prefix).
+When importing the slashing protection file, Teku imports the file to the `<data-path>/validator/slashprotection/` directory in the format `<validator-pubkey>.yml` (with no 0x prefix).
 
 ```bash title="Example"
 teku slashing-protection import --data-path=/home/me/me_node --from=/home/slash/slashing-interchange-format.json
@@ -30,7 +30,7 @@ In the command line:
 - [`--data-path`](../../reference/cli/subcommands/slashing-protection.md#data-path-1) specifies the location of the Teku `data` directory.
 - [`--from`](../../reference/cli/subcommands/slashing-protection.md#from) specifies the location of the slashing protection file.
 
-In this example, Teku imports the file to the `/home/me/me_node/data/validators/slashprotection/` directory.
+In this example, Teku imports the file to the `/home/me/me_node/validator/slashprotection/` directory.
 
 ## Export a slashing protection file
 

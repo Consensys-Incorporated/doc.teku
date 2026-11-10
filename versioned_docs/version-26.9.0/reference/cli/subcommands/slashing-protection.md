@@ -225,7 +225,7 @@ data-validator-path: "/home/me/me_validator"
   </TabItem>
 </Tabs>
 
-Path to the validator client data. The default is `<data-path>/validator` where `<data-path>` is specified using [`--data-path`](#data-path).
+Path to the validator client data. The default is `<data-path>/validator` where `<data-path>` is specified using [`--data-path`](#data-path-1).
 
 :::info
 
@@ -254,9 +254,9 @@ teku slashing-protection import --from=/home/slash/b845...23bed.json
 
 The file to import the slashing protection database from.
 
-Teku imports the file to the `<data-path>/validators/slashprotection/` directory in the format `<validator-pubkey>.yml` (with no 0x prefix).
+Teku imports the file to the `<data-path>/validator/slashprotection/` directory in the format `<validator-pubkey>.yml` (with no 0x prefix).
 
-`<data-path>` is defined using [`--data-path`](#data-path).
+`<data-path>` is defined using [`--data-path`](#data-path-1).
 
 ## `repair`
 
@@ -268,14 +268,14 @@ Repairs corrupted slashing protection data files used by Teku.
   <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
-teku slashing-protection repair --checking-only-enabled[=<BOOLEAN>]
+teku slashing-protection repair --check-only-enabled[=<BOOLEAN>]
 ```
 
   </TabItem>
   <TabItem value="Example" label="Example" >
 
 ```bash
-teku slashing-protection repair --checking-only-enabled=false
+teku slashing-protection repair --check-only-enabled=false
 ```
 
   </TabItem>
@@ -349,7 +349,7 @@ teku slashing-protection repair --data-validator-path=/home/me/me_validator
   </TabItem>
 </Tabs>
 
-Path to validator client data. The default is `<data-path>/validator` where `<data-path>` is specified using [`--data-path`](#data-path).
+Path to validator client data. The default is `<data-path>/validator` where `<data-path>` is specified using [`--data-path`](#data-path-2).
 
 :::info
 
@@ -381,7 +381,7 @@ Predefined network configuration. Accepts a predefined network name, or file pat
 Possible values are:
 
 | Network    | Chain           | Type       | Description                                                           |
-|------------|-----------------|------------|-----------------------------------------------------------------------|
+| ---------- | --------------- | ---------- | --------------------------------------------------------------------- |
 | `mainnet`  | Consensus layer | Production | Main network                                                          |
 | `hoodi`    | Consensus layer | Test       | Multi-client testnet                                                  |
 | `ephemery` | Consensus layer | Test       | Multi-client testnet                                                  |

@@ -26,7 +26,14 @@ Set `<data-path>` using the [`--data-path`](../reference/cli/index.md#data-base-
 
 :::
 
-Teku provides command line options to [import] or [export] the slashing protection file.
+Teku provides command line options to [import] or [export] the slashing protection file, and to [repair] slashing protection files.
+
+:::warning
+
+If a validator has no slashing protection file, Teku treats it as never having signed anything, and creates the file the first time the validator signs.
+When moving validator keys to Teku, always import or create their slashing protection files before starting the validator client.
+
+:::
 
 :::tip
 
@@ -76,7 +83,7 @@ For example, to manually move the file from node A to node B:
 
 1. Stop Teku node A and confirm the process has fully exited and won't be restarted.
 1. Remove the validator key from node A, for example from the [`--validator-keys`](../reference/cli/index.md#validator-keys) option.
-1. Copy the file from `<nodeA-data-path>/validators/slashprotection/` to `<nodeB-data-path>/validators/slashprotection/`.
+1. Copy the file from `<nodeA-data-path>/validator/slashprotection/` to `<nodeB-data-path>/validator/slashprotection/`.
 1. Start node B with the migrated validator key.
 1. Restart node A if required.
 
@@ -84,8 +91,10 @@ For example, to manually move the file from node A to node B:
 
 If moving a validator from a different client to Teku, you can do either of the following:
 
-- Manually [create a new slashing protection file] by setting the values based on the validator's last signing details.
 - [Import] the slashing protection file.
+- Add the validator keys to the Teku configuration and, before starting the validator client, [repair] with `--update-all-enabled` to create a file for each key.
+  This blocks the validators from signing until about one epoch after the repair.
+- Manually [create a new slashing protection file] by setting the values based on the validator's last signing details.
 
 To manually create the file, stop the other client to ensure it isn't signing, then set the following:
 
@@ -98,6 +107,7 @@ Start the Teku node with the validator key.
 <!-- links -->
 
 [YAML file is stored per validator]: #validator-slashing-protection-file
+[repair]: ../how-to/prevent-slashing/repair-slashing-protection.md
 [create a new slashing protection file]: #validator-slashing-protection-file
 [import]: ../how-to/prevent-slashing/use-a-slashing-protection-file.md#import-a-slashing-protection-file
 [export]: ../how-to/prevent-slashing/use-a-slashing-protection-file.md#export-a-slashing-protection-file
