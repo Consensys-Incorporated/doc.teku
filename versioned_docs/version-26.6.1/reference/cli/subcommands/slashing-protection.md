@@ -227,7 +227,7 @@ data-validator-path: "/home/me/me_validator"
   </TabItem>
 </Tabs>
 
-Path to the validator client data. The default is `<data-path>/validator` where `<data-path>` is specified using [`--data-path`](#data-path-1).
+Path to the validator client data. The default is `<data-path>/validator` where `<data-path>` is specified using [`--data-path`](#data-path).
 
 :::info
 
@@ -256,9 +256,9 @@ teku slashing-protection import --from=/home/slash/b845...23bed.json
 
 The file to import the slashing protection database from.
 
-Teku imports the file to the `<data-path>/validator/slashprotection/` directory in the format `<validator-pubkey>.yml` (with no 0x prefix).
+Teku imports the file to the `<data-path>/validators/slashprotection/` directory in the format `<validator-pubkey>.yml` (with no 0x prefix).
 
-`<data-path>` is defined using [`--data-path`](#data-path-1).
+`<data-path>` is defined using [`--data-path`](#data-path).
 
 ## `repair`
 
@@ -270,14 +270,14 @@ Repairs corrupted slashing protection data files used by Teku.
   <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
-teku slashing-protection repair --check-only-enabled[=<BOOLEAN>]
+teku slashing-protection repair --checking-only-enabled[=<BOOLEAN>]
 ```
 
   </TabItem>
   <TabItem value="Example" label="Example" >
 
 ```bash
-teku slashing-protection repair --check-only-enabled=false
+teku slashing-protection repair --checking-only-enabled=false
 ```
 
   </TabItem>
@@ -352,7 +352,7 @@ teku slashing-protection repair --data-validator-path=/home/me/me_validator
   </TabItem>
 </Tabs>
 
-Path to validator client data. The default is `<data-path>/validator` where `<data-path>` is specified using [`--data-path`](#data-path-2).
+Path to validator client data. The default is `<data-path>/validator` where `<data-path>` is specified using [`--data-path`](#data-path).
 
 :::info
 

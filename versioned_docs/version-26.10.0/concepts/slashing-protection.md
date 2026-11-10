@@ -76,7 +76,7 @@ For example, to manually move the file from node A to node B:
 
 1. Stop Teku node A and confirm the process has fully exited and won't be restarted.
 1. Remove the validator key from node A, for example from the [`--validator-keys`](../reference/cli/index.md#validator-keys) option.
-1. Copy the file from `<nodeA-data-path>/validator/slashprotection/` to `<nodeB-data-path>/validator/slashprotection/`.
+1. Copy the file from `<nodeA-data-path>/validators/slashprotection/` to `<nodeB-data-path>/validators/slashprotection/`.
 1. Start node B with the migrated validator key.
 1. Restart node A if required.
 
