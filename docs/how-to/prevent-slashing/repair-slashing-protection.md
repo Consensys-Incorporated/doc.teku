@@ -53,7 +53,7 @@ If any file belongs to a different network, `repair` stops without changing anyt
 
 :::caution
 
-`--network` defaults to `mainnet`.
+If you don't specify `--network`, the default is `mainnet`.
 If you repair a testnet validator without specifying its network, the repair slot is mainnet's current slot, which can be years ahead of the testnet.
 The validator then can't sign until the testnet reaches that slot.
 
