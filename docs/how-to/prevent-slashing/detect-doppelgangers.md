@@ -1,6 +1,6 @@
 ---
 description: Check if your validators' keys are already active.
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Detect doppelgangers
