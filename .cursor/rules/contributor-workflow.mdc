@@ -18,10 +18,14 @@ Use `_category_.json`, `sidebar_position`, and `sidebar_label` to control orderi
 
 ## Redirects
 
-Every deleted, renamed, or moved page should have redirect coverage:
+Every deleted, renamed, or moved page needs a permanent redirect in `vercel.json`:
 
-- Add or update redirect entries in `docusaurus.config.js` under `@docusaurus/plugin-client-redirects`.
-- Update `vercel.json` when versioned route behavior also needs adjustment.
+```json
+{ "source": "/old-path", "destination": "/new-path", "permanent": true }
+```
+
+`trailingSlash` is `false`, matching `docusaurus.config.js`, so one entry covers the path
+with and without a trailing slash. Versioned route changes belong in `vercel.json` too.
 
 Broken links fail builds (`onBrokenLinks: "throw"`).
 
