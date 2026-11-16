@@ -2,21 +2,24 @@
 name: Trivy
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
 
 permissions: {} # lock everything by default (least-privilege)
 
 jobs:
   trivy:
-    name: Run trivy scanner
-    runs-on: ubuntu-latest
     permissions:
-      contents: read  # least-privilege for this job only
-      security-events: write  # upload Trivy SARIF results to code scanning
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Trivy
-        uses: Consensys-Incorporated/github-actions/trivy@89c262a30cae735be99dc776f9556b796fb456ca # v1.0.0
-        
+      actions: read
+      contents: read
+      security-events: write
+    uses: Consensys-Incorporated/github-actions/.github/workflows/trivy.yml@633ca293fa3bc3490d58840b085245780774c989 # 2.0.0
+    with:
+      environment: security # holds SLACK_WEBHOOK
