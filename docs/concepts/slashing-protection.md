@@ -72,6 +72,35 @@ You can obtain the `genesisValidatorsRoot` value by using the [`/eth/v1/beacon/g
 
 These rules guarantee the validator does not sign anything that is slashable.
 
+## Repair slashing protection files
+
+Use the [`repair`](../how-to/prevent-slashing/repair-slashing-protection.md) command line option to
+fix a damaged slashing protection file by writing a minimum slot into it.
+The validator can't sign a block or attestation from before that slot.
+That protects the validator when Teku has no reliable record of what the validator has already signed.
+With [`--update-all-enabled`](../reference/cli/subcommands/slashing-protection.md#update-all-enabled), `repair` also creates a file for a validator key that has none.
+
+The [`repair`](../reference/cli/subcommands/slashing-protection.md#repair) subcommand reads the `<validator-pubkey>.yml` files in the `slashprotection` directory under the validator client data directory.
+It ignores files whose name isn't a validator public key.
+
+`repair` sets a repair slot in each file it updates:
+
+- `lastSignedBlockSlot` is set to the repair slot.
+- `lastSignedAttestationSourceEpoch` and `lastSignedAttestationTargetEpoch` are set to the epoch of the repair slot.
+
+By default, the repair slot is the current slot plus one epoch, so your validators miss at most one epoch of duties.
+Teku determines the current slot from the network's initial state, or from its genesis state if the network has no initial state.
+You can set the repair slot yourself with the [`--slot`](../reference/cli/subcommands/slashing-protection.md#slot) option.
+
+`repair` only raises values.
+If a file already has a higher value, `repair` keeps it.
+This means `repair` can't undo a repair slot that was too high.
+To lower the values, [edit the slashing protection files](../how-to/prevent-slashing/repair-slashing-protection.md#lower-the-repair-slot-values).
+
+When Teku determines the repair slot from the network, it also checks that existing files belong to that network.
+Teku uses each file's `genesisValidatorsRoot` for that check.
+If any file belongs to a different network, `repair` stops without changing anything.
+
 ## Migrate the slashing protection file
 
 Use the Teku command line options to [import] or [export] the slashing protection file. Alternatively, you can manually migrate or create the database.
