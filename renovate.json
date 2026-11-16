@@ -5,6 +5,11 @@
   ],
   "enabledManagers": ["github-actions", "npm"],
   "dependencyDashboard": false,
+  "schedule": ["before 6am on monday"],
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  },
+  "osvVulnerabilityAlerts": true,
   "packageRules": [
     {
       "description": "Pin all GitHub Actions to SHA digests",
@@ -16,7 +21,7 @@
     {
       "description": "Allow immediate updates for Consensys-Incorporated/github-actions",
       "matchManagers": ["github-actions"],
-      "matchPackagePrefixes": ["Consensys-Incorporated/github-actions"],
+      "matchPackageNames": ["Consensys-Incorporated/github-actions{/,}**"],
       "minimumReleaseAge": "0 days"
     },
     {
