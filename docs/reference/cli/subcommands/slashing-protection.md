@@ -254,16 +254,17 @@ teku slashing-protection import --from=/home/slash/b845...23bed.json
 
 The file to import the slashing protection database from.
 
-Teku imports the file to the `<data-path>/validator/slashprotection/` directory in the format `<validator-pubkey>.yml` (with no 0x prefix).
+Teku imports the file to the `<data-path>/validator/slashprotection/` directory in the format `<validator-pubkey>.yml` (with no `0x` prefix).
 
 `<data-path>` is defined using [`--data-path`](#data-path-1).
 
 ## `repair`
 
-Repairs the slashing protection files in the `slashprotection` directory under the validator client data directory, and creates them for validator keys that have none.
+Repairs damaged slashing protection files in the `slashprotection` directory under the validator client data directory.
 
 By default, `repair` only rewrites files that are empty, unreadable, or missing a value.
-Each rewritten file records the repair slot as the last signed block, and that slot's epoch as the last signed attestation source and target epochs.
+Each rewritten file records the repair slot as the last signed block.
+It records that slot's epoch as the last signed attestation source and target epochs.
 With [`--update-all-enabled`](#update-all-enabled), `repair` also raises valid files to the repair slot and creates files for validator keys that have none.
 `repair` never lowers a value in a valid file.
 
@@ -303,7 +304,7 @@ The default is `false`.
 Without this option, `repair` also lists validator keys that have no file, but only creates files for them with [`--update-all-enabled`](#update-all-enabled).
 
 Teku still determines the repair slot, so networks without an initial or genesis state need [`--slot`](#slot).
-You can specify which files are checked using [`--config-file`](#config-file-2), [`--data-path`](#data-path-2), and [`--data-validator-path`](#data-validator-path-2).
+Specify the files to check with [`--config-file`](#config-file-2), [`--data-path`](#data-path-2), or [`--data-validator-path`](#data-validator-path-2).
 
 ### `checkpoint-sync-url`
 
@@ -348,7 +349,8 @@ teku slashing-protection repair --config-file=/home/me/me_node/config.yaml
 
 Path to the YAML configuration file. The default is `none`.
 
-Use the configuration file of the node you're repairing so `repair` uses the same network, data path, and validator keys.
+Use the configuration file of the node you're repairing.
+`repair` then uses the same network, data path, and validator keys.
 
 ### `data-path`
 
@@ -369,7 +371,9 @@ teku slashing-protection repair --data-path=/home/me/me_node
   </TabItem>
 </Tabs>
 
-Path to the Teku data directory. `--data-base-path` is an alias for this option. The default directory is OS-dependent:
+Path to the Teku data directory.
+`--data-base-path` is an alias for this option.
+The default directory is OS-dependent:
 
 - macOS: `~/Library/teku`
 - Unix/Linux: `$XDG_DATA_HOME/teku` if `$XDG_DATA_HOME` is set; otherwise `~/.local/share/teku`
@@ -483,12 +487,13 @@ Possible values are:
 | `lukso`    | Consensus layer | Production | Network for the [Lukso chain](https://lukso.network/)                 |
 
 The network determines the slot timing and the state Teku uses to determine the repair slot.
-When Teku determines the slot, it also checks that the existing files belong to this network, and stops without changing anything if any don't.
+When Teku determines the slot, it also checks that the existing files belong to this network.
+`repair` stops without changing anything if any file belongs to a different network.
 
 :::caution
 
 Always specify the network of the node you're repairing, either with this option or with [`--config-file`](#config-file-2).
-Repairing a testnet validator with the default `mainnet` slot would block it from signing until the testnet reaches that slot.
+Repairing a testnet validator with the default `mainnet` slot blocks it from signing until the testnet reaches that slot.
 
 :::
 
@@ -511,11 +516,13 @@ teku slashing-protection repair --slot=1028
   </TabItem>
 </Tabs>
 
-The repair slot. Rewritten and created files record this slot as the last signed block, and its epoch as the last signed attestation source and target epochs.
-With [`--update-all-enabled`](#update-all-enabled), valid files with a lower value are raised to it.
+The repair slot.
+Rewritten and created files record this slot as the last signed block, and its epoch as the last signed attestation source and target epochs.
+With [`--update-all-enabled`](#update-all-enabled), `repair` raises valid files that have a lower value.
 
-Use a slot after the validators last signed anything, on any machine.
-If you don't specify a slot, Teku uses the current slot plus one epoch, using the network's initial state, or its genesis state if it has no initial state.
+Use a slot after your validators last signed anything, on any machine.
+If you don't specify a slot, Teku uses the current slot plus one epoch.
+Teku takes that slot from the network's initial state, or from its genesis state if it has no initial state.
 Networks without either, such as `minimal`, require this option.
 
 :::caution
@@ -544,14 +551,18 @@ teku slashing-protection repair --update-all-enabled
   </TabItem>
 </Tabs>
 
-Updates every validator's slashing protection to at least the repair [`--slot`](#slot). The default is `false`.
+Updates every validator's slashing protection to at least the repair [`--slot`](#slot).
+The default is `false`.
 
 When enabled, `repair` also:
 
-- Raises each value in a valid file that's lower than the repair slot or its epoch. Values that are already higher are kept, along with the file's `genesisValidatorsRoot`.
+- Raises each value in a valid file that's lower than the repair slot or its epoch.
+  `repair` keeps values that are already higher, along with the file's `genesisValidatorsRoot`.
 - Creates a file for each validator key that has none.
-  Teku reads the keys imported with the [key manager API](https://ethereum.github.io/keymanager-APIs/), and those listed by [`--validator-keys`](#validator-keys) and [`--validators-external-signer-public-keys`](#validators-external-signer-public-keys), usually from the [configuration file](#config-file-2).
-  Teku doesn't check external signer keys given as a URL or with the `external-signer` keyword, or keys it can't read, and lists them as not checked.
+  Teku reads keys imported with the [key manager API](https://ethereum.github.io/keymanager-APIs/), and keys listed by [`--validator-keys`](#validator-keys) and [`--validators-external-signer-public-keys`](#validators-external-signer-public-keys).
+  Those keys usually come from the [configuration file](#config-file-2).
+  Teku doesn't check external signer keys given as a URL or with the `external-signer` keyword, or keys it can't read.
+  It lists those keys as not checked.
 - Creates the `slashprotection` directory if it doesn't exist, as long as Teku found at least one validator key.
 
 ### `validator-keys`
@@ -573,7 +584,8 @@ teku slashing-protection repair --validator-keys=/home/validator/keys:/home/vali
   </TabItem>
 </Tabs>
 
-Keystores of the validators to check for a missing slashing protection file, in the same format as the node's [`--validator-keys`](../index.md#validator-keys) option.
+Keystores of the validators to check for a missing slashing protection file.
+Use the same format as the node's [`--validator-keys`](../index.md#validator-keys) option.
 Teku reads each keystore's public key without decrypting it.
 The password files must exist, but Teku doesn't read them.
 
@@ -596,7 +608,8 @@ teku slashing-protection repair --validators-external-signer-public-keys=0xa99a.
   </TabItem>
 </Tabs>
 
-Public keys of external signer validators to check for a missing slashing protection file, in the same format as the node's [`--validators-external-signer-public-keys`](../index.md#validators-external-signer-public-keys) option.
+Public keys of external signer validators to check for a missing slashing protection file.
+Use the same format as the node's [`--validators-external-signer-public-keys`](../index.md#validators-external-signer-public-keys) option.
 Teku doesn't fetch keys given as a URL or with the `external-signer` keyword, and lists them as not checked.
 
 :::note

@@ -30,8 +30,9 @@ Teku provides command line options to [import] or [export] the slashing protecti
 
 :::warning
 
-If a validator has no slashing protection file, Teku treats it as never having signed anything, and creates the file the first time the validator signs.
-When moving validator keys to Teku, always import or create their slashing protection files before starting the validator client.
+If a validator has no slashing protection file, Teku treats it as never having signed anything.
+Teku creates the file the first time the validator signs.
+When you move validator keys to Teku, import or create their slashing protection files before you start the validator client.
 
 :::
 
@@ -89,11 +90,11 @@ For example, to manually move the file from node A to node B:
 
 ### From a non-Teku node
 
-If moving a validator from a different client to Teku, you can do either of the following:
+If you move a validator from a different client to Teku, do one of the following:
 
 - [Import] the slashing protection file.
-- Add the validator keys to the Teku configuration and, before starting the validator client, [repair] with `--update-all-enabled` to create a file for each key.
-  This blocks the validators from signing until about one epoch after the repair.
+- Add the validator keys to the Teku configuration and, before you start the validator client, [repair] with `--update-all-enabled` to create a file for each key.
+  This blocks your validators from signing until about one epoch after the repair.
 - Manually [create a new slashing protection file] by setting the values based on the validator's last signing details.
 
 To manually create the file, stop the other client to ensure it isn't signing, then set the following:

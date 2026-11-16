@@ -5,19 +5,40 @@ sidebar_position: 2
 
 # Repair slashing protection files
 
-Use [`teku slashing-protection repair`](../../reference/cli/subcommands/slashing-protection.md#repair) to fix [slashing protection] files that are damaged or missing.
+Use [`teku slashing-protection repair`](../../reference/cli/subcommands/slashing-protection.md#repair) to fix damaged [slashing protection] files.
+With [`--update-all-enabled`](#update-all-files-and-create-missing-ones), `repair` also creates files that are missing.
 It writes a minimum slot into each validator's file, so the validator can't sign a block or attestation from before that slot.
 
 Use `repair` when:
 
 - Teku reports that a slashing protection file is empty or can't be read, and refuses to sign for that validator.
 - You moved validator keys to Teku without their slashing protection data, and can't [import a slashing protection file].
-- You want to make sure your validators can't sign anything before a given slot, for example after restoring a backup.
+- Your validators must not sign anything before a given slot, for example after you restore a backup.
 
 :::warning
 
-A validator key with no slashing protection file is treated as never having signed anything, so Teku will sign any block or attestation for it.
-If you moved keys without their slashing protection data, add them to the Teku configuration and run `repair` with [`--update-all-enabled`](#update-all-files-and-create-missing-ones) before starting the validator client.
+Teku treats a validator key with no slashing protection file as never having signed anything.
+Teku then signs any block or attestation for that key.
+If you moved keys without their slashing protection data, add them to the Teku configuration.
+Run `repair` with [`--update-all-enabled`](#update-all-files-and-create-missing-ones) before you start the validator client.
+
+:::
+
+## Prerequisites
+
+- Stop your validator client.
+  A running validator client caches its slashing protection records and overwrites the repaired files.
+- Make sure your validators aren't running anywhere else.
+  `repair` only protects against signing on this node.
+- Use the same configuration as the node you're repairing.
+  Pass it with [`--config-file`](../../reference/cli/subcommands/slashing-protection.md#config-file-2) so `repair` uses that network, data path, and validator keys.
+
+:::caution
+
+If you don't specify `--network`, the default is `mainnet`.
+If you repair a testnet validator without specifying its network, the repair slot is mainnet's current slot.
+That slot can be years ahead of the testnet.
+Your validator then can't sign until the testnet reaches that slot.
 
 :::
 
@@ -31,33 +52,18 @@ It ignores files whose name isn't a validator public key.
 - `lastSignedBlockSlot` is set to the repair slot.
 - `lastSignedAttestationSourceEpoch` and `lastSignedAttestationTargetEpoch` are set to the epoch of the repair slot.
 
-By default, Teku uses the current slot plus one epoch as the repair slot, so validators miss at most one epoch of duties.
+By default, Teku uses the current slot plus one epoch as the repair slot.
+Your validators then miss at most one epoch of duties.
 Teku determines the current slot from the network's initial state, or its genesis state if it has no initial state.
-You can set the repair slot with [`--slot`](../../reference/cli/subcommands/slashing-protection.md#slot).
+Set the repair slot with [`--slot`](../../reference/cli/subcommands/slashing-protection.md#slot).
 
-`repair` only ever raises values.
+`repair` only raises values.
 If a file already has a higher value, `repair` keeps it.
-This means you can't use `repair` to undo a repair slot that was too high.
+You can't use `repair` to undo a repair slot that was too high.
 
-When Teku determines the repair slot, it also checks that existing files belong to the network you're repairing, using their `genesisValidatorsRoot`.
+When Teku determines the repair slot, it also checks that existing files belong to the network you're repairing.
+Teku uses each file's `genesisValidatorsRoot` for that check.
 If any file belongs to a different network, `repair` stops without changing anything.
-
-## Prerequisites
-
-- Stop the validator client.
-  A running validator client caches its slashing protection records and overwrites the repaired files.
-- Make sure the validators aren't running anywhere else.
-  `repair` only protects against signing on this node.
-- Use the same configuration as the node you're repairing, ideally with [`--config-file`](../../reference/cli/subcommands/slashing-protection.md#config-file-2).
-  `repair` uses the network, data path, and validator keys from it.
-
-:::caution
-
-If you don't specify `--network`, the default is `mainnet`.
-If you repair a testnet validator without specifying its network, the repair slot is mainnet's current slot, which can be years ahead of the testnet.
-The validator then can't sign until the testnet reaches that slot.
-
-:::
 
 ## Check for problems
 
@@ -80,37 +86,39 @@ See [Which validator keys are checked](#which-validator-keys-are-checked) for wh
 
 ## Repair damaged files
 
-Run `repair` with the configuration file of the node:
+1. Run `repair` with the configuration file of your node:
 
-```bash
-teku slashing-protection repair --config-file=/home/me/me_node/config.yaml
-```
+   ```bash
+   teku slashing-protection repair --config-file=/home/me/me_node/config.yaml
+   ```
 
-Teku rewrites files that are empty, can't be read, or are missing a value.
-Rewritten files don't keep their `genesisValidatorsRoot`; Teku adds it again the next time the validator signs.
-Valid files aren't changed.
+   Teku rewrites files that are empty, can't be read, or are missing a value.
+   Rewritten files don't keep their `genesisValidatorsRoot`.
+   Teku adds it again the next time the validator signs.
+   `repair` doesn't change valid files.
 
-Teku displays the repair slot and its epoch, and asks you to confirm:
+   Teku displays the repair slot and its epoch, and asks you to confirm:
 
-```text
-Computed hoodi slot 4337768, which will set attestation source/target to epoch 135555
-b89bebc6...874a0b: Incomplete or invalid slashing protection data
+   ```text
+   Computed hoodi slot 4337768, which will set attestation source/target to epoch 135555
+   b89bebc6...874a0b: Incomplete or invalid slashing protection data
 
-REMINDER! If the validator is running, you should not be updating slashing protection records.
-block slot -> 4337768
-attestation source/target -> 135555
-Are you sure you wish to continue (yes/no)?
-```
+   REMINDER! If the validator is running, you should not be updating slashing protection records.
+   block slot -> 4337768
+   attestation source/target -> 135555
+   Are you sure you wish to continue (yes/no)?
+   ```
 
-Type `yes` to update the files.
-Any other answer cancels the repair without changing anything.
+1. Type `yes` to update the files.
+   Any other answer cancels the repair without changing anything.
 
-Teku also lists validator keys that have no slashing protection file, but doesn't create files for them without `--update-all-enabled`.
+Teku also lists validator keys that have no slashing protection file.
+It doesn't create files for them unless you set `--update-all-enabled`.
 If those are the only problems, Teku doesn't ask for confirmation and changes nothing.
 
 ## Update all files and create missing ones
 
-Use [`--update-all-enabled`](../../reference/cli/subcommands/slashing-protection.md#update-all-enabled) to make sure every validator is protected up to the repair slot:
+Use [`--update-all-enabled`](../../reference/cli/subcommands/slashing-protection.md#update-all-enabled) to protect every validator up to the repair slot:
 
 ```bash
 teku slashing-protection repair --config-file=/home/me/me_node/config.yaml --update-all-enabled
@@ -133,7 +141,8 @@ attestation source/target -> 135555
 Are you sure you wish to continue (yes/no)?
 ```
 
-Without `--update-all-enabled`, Teku doesn't create missing files, because Teku normally creates a validator's file the first time it signs.
+Without `--update-all-enabled`, Teku doesn't create missing files.
+Teku normally creates a validator's file the first time it signs.
 
 ### Which validator keys are checked
 
@@ -165,16 +174,18 @@ Use [`--slot`](../../reference/cli/subcommands/slashing-protection.md#slot) to s
 teku slashing-protection repair --config-file=/home/me/me_node/config.yaml --slot=1234 --update-all-enabled
 ```
 
-Choose a slot after the validators last signed anything, on any machine.
+Choose a slot after your validators last signed anything, on any machine.
 When you specify a slot, Teku doesn't check that existing files belong to the network, so check the network yourself.
 
 ## Fix a repair slot that's too high
 
 `repair` can't lower values.
-If the repair slot was too high, the validators can't sign until the network reaches that slot.
+If the repair slot was too high, your validators can't sign until the network reaches that slot.
 
-To recover, stop the validator client and edit the affected files by hand, setting the values to those of the last block and attestation each validator signed.
-See [Validator slashing protection file](../../concepts/slashing-protection.md#validator-slashing-protection-file) for the file format.
+1. Stop your validator client.
+1. Edit the affected files by hand.
+   Set the values to the last block and attestation each validator signed.
+   See [Validator slashing protection file](../../concepts/slashing-protection.md#validator-slashing-protection-file) for the file format.
 
 <!-- links -->
 
