@@ -36,15 +36,17 @@ If uncertain, flag the uncertainty for review.
 
 ## Issue intake
 
-Issue templates live in `.github/ISSUE_TEMPLATE/`. `new-content.yml`, `fix-content.yml`, and
-`site.yml` share one field contract. Do not rename these labels: Summary, Docs area,
-Target audience, Content type, Affected pages, Source links, Acceptance criteria, Out of
-scope, Agent disposition, and PR gates. Only the Docs area options and examples are
-product-specific.
+Issue templates live in `.github/ISSUE_TEMPLATE/`. `new-content.yml` and `fix-content.yml`
+share one field contract. Do not rename these labels: Summary, Docs area, Target
+audience, Content type, Affected pages, Source links, Acceptance criteria, Out of scope,
+Agent disposition, and PR gates. Only the Docs area options and examples are
+product-specific. `site.yml` uses the same labels except Docs area, Target audience,
+and Content type.
 
 When issue context is sparse, verify behavior from source materials before updating docs.
 Open a docs pull request without extra triage only when Agent disposition is
-`Ready for a docs PR` and every PR gate is checked.
+`Ready for a docs PR` and every PR gate is checked. A new page, including a
+how-to guide or tutorial, or a new section requires Needs human judgment.
 
 ## Images
 
