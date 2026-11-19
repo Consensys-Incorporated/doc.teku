@@ -2,7 +2,7 @@ name: renovatebot
 
 on:
   schedule:
-    - cron: "15 3 * * *"
+    - cron: "15 3 * * 1"
   workflow_dispatch:
 
 permissions: {} # lock everything by default (least-privilege)
