@@ -1,6 +1,6 @@
 ---
 description: Shut down Teku if a validator is slashed.
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Stop Teku when a validator is slashed
