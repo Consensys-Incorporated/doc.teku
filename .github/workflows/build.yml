@@ -19,4 +19,4 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Build
-        uses: Consensys-Incorporated/github-actions/docs-build@10825e5427095aae0ca5686db2caa5029d693a4f # 2.0.1
+        uses: Consensys-Incorporated/github-actions/docs-build@d7118b7e3733bac9a7f92f05f02f18c73892d5ad # 2.2.0
