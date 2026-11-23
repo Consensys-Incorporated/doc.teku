@@ -26,7 +26,15 @@ Set `<data-path>` using the [`--data-path`](../reference/cli/index.md#data-base-
 
 :::
 
-Teku provides command line options to [import] or [export] the slashing protection file.
+Teku provides command line options to [import] or [export] the slashing protection file, and to [repair] slashing protection files.
+
+:::warning
+
+If a validator has no slashing protection file, Teku treats it as never having signed anything.
+Teku creates the file the first time the validator signs.
+When you move validator keys to Teku, import or create their slashing protection files before you start the validator client.
+
+:::
 
 :::tip
 
@@ -64,6 +72,35 @@ You can obtain the `genesisValidatorsRoot` value by using the [`/eth/v1/beacon/g
 
 These rules guarantee the validator does not sign anything that is slashable.
 
+## Repair slashing protection files
+
+Use the [`repair`](../how-to/prevent-slashing/repair-slashing-protection.md) command line option to
+fix a damaged slashing protection file by writing a minimum slot into it.
+The validator can't sign a block or attestation from before that slot.
+That protects the validator when Teku has no reliable record of what the validator has already signed.
+With [`--update-all-enabled`](../reference/cli/subcommands/slashing-protection.md#update-all-enabled), `repair` also creates a file for a validator key that has none.
+
+The [`repair`](../reference/cli/subcommands/slashing-protection.md#repair) subcommand reads the `<validator-pubkey>.yml` files in the `slashprotection` directory under the validator client data directory.
+It ignores files whose name isn't a validator public key.
+
+`repair` sets a repair slot in each file it updates:
+
+- `lastSignedBlockSlot` is set to the repair slot.
+- `lastSignedAttestationSourceEpoch` and `lastSignedAttestationTargetEpoch` are set to the epoch of the repair slot.
+
+By default, the repair slot is the current slot plus one epoch, so your validators miss at most one epoch of duties.
+Teku determines the current slot from the network's initial state, or from its genesis state if the network has no initial state.
+You can set the repair slot yourself with the [`--slot`](../reference/cli/subcommands/slashing-protection.md#slot) option.
+
+`repair` only raises values.
+If a file already has a higher value, `repair` keeps it.
+This means `repair` can't undo a repair slot that was too high.
+To lower the values, [edit the slashing protection files](../how-to/prevent-slashing/repair-slashing-protection.md#lower-the-repair-slot-values).
+
+When Teku determines the repair slot from the network, it also checks that existing files belong to that network.
+Teku uses each file's `genesisValidatorsRoot` for that check.
+If any file belongs to a different network, `repair` stops without changing anything.
+
 ## Migrate the slashing protection file
 
 Use the Teku command line options to [import] or [export] the slashing protection file. Alternatively, you can manually migrate or create the database.
@@ -76,16 +113,18 @@ For example, to manually move the file from node A to node B:
 
 1. Stop Teku node A and confirm the process has fully exited and won't be restarted.
 1. Remove the validator key from node A, for example from the [`--validator-keys`](../reference/cli/index.md#validator-keys) option.
-1. Copy the file from `<nodeA-data-path>/validators/slashprotection/` to `<nodeB-data-path>/validators/slashprotection/`.
+1. Copy the file from `<nodeA-data-path>/validator/slashprotection/` to `<nodeB-data-path>/validator/slashprotection/`.
 1. Start node B with the migrated validator key.
 1. Restart node A if required.
 
 ### From a non-Teku node
 
-If moving a validator from a different client to Teku, you can do either of the following:
+If you move a validator from a different client to Teku, do one of the following:
 
-- Manually [create a new slashing protection file] by setting the values based on the validator's last signing details.
 - [Import] the slashing protection file.
+- Add the validator keys to the Teku configuration and, before you start the validator client, [repair] with `--update-all-enabled` to create a file for each key.
+  This blocks your validators from signing until about one epoch after the repair.
+- Manually [create a new slashing protection file] by setting the values based on the validator's last signing details.
 
 To manually create the file, stop the other client to ensure it isn't signing, then set the following:
 
@@ -98,6 +137,7 @@ Start the Teku node with the validator key.
 <!-- links -->
 
 [YAML file is stored per validator]: #validator-slashing-protection-file
+[repair]: ../how-to/prevent-slashing/repair-slashing-protection.md
 [create a new slashing protection file]: #validator-slashing-protection-file
 [import]: ../how-to/prevent-slashing/use-a-slashing-protection-file.md#import-a-slashing-protection-file
 [export]: ../how-to/prevent-slashing/use-a-slashing-protection-file.md#export-a-slashing-protection-file
