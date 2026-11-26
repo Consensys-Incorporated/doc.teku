@@ -67,3 +67,37 @@ rest-api-enabled: true
 # logging
 log-include-validator-duties-enabled: true
 ```
+
+## Stable and experimental options
+
+Teku has two kinds of options: stable and experimental.
+The same rules apply whether you set an option on the command line, as an environment variable, or in the configuration file.
+
+### Stable options
+
+Stable options are the options listed in the [command line reference](../../reference/cli/index.md).
+They don't change or get removed without a deprecation notice:
+
+1. A release announces the upcoming change as a breaking change in the [release notes](https://github.com/Consensys-Incorporated/teku/releases).
+1. The change happens no earlier than the next release.
+   Sometimes Teku keeps a deprecated option for longer.
+
+Check the release notes before you upgrade so you can update your configuration in time.
+
+### Experimental options
+
+Experimental options start with `--X` on the command line (for example, `--Xexample-option`), or with `X` in the configuration file.
+They enable features that are still in development or are meant for testing and debugging.
+
+:::warning
+
+Don't use experimental options unless you know exactly what they do and accept the risk.
+
+- They aren't documented in the command line reference.
+- They can change, change behavior, or be removed in any release, without a deprecation notice.
+- Teku can't start if your configuration includes an experimental option that a later release removed.
+
+:::
+
+When an experimental feature is ready, Teku promotes it to a stable option and documents it in the command line reference.
+If you use experimental options, review your configuration against the release notes on every upgrade.
